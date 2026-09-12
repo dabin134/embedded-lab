@@ -3,72 +3,192 @@ import { SpiSignalDemo } from "@/components/spi-signal-demo";
 import { rfidSteps } from "@/lib/data";
 
 const paths = [
-  { n: "01", title: "Bauen", text: "Lerne entlang echter Projekte. Jeder Schritt erzeugt ein sicht- oder messbares Ergebnis.", href: "/projects", label: "Projekte entdecken" },
-  { n: "02", title: "Verstehen", text: "Vertiefe wiederverwendbare Konzepte wie GPIO, SPI, Register, RFID und digitales Audio.", href: "/concepts", label: "Konzepte öffnen" },
-  { n: "03", title: "Experimentieren", text: "Untersuche Signale, Pins, Protokolle und Messwerte in interaktiven Laborbausteinen.", href: "/lab", label: "Ins Lab" },
-  { n: "04", title: "Wiederholen", text: "Verdichte Wissen, prüfe mentale Modelle und finde gezielt Lücken statt Seiten auswendig zu lernen.", href: "/knowledge", label: "Wissen prüfen" },
+  {
+    n: "01",
+    title: "Bauen",
+    text: "Lerne an echten Systemen. Jeder Schritt endet mit etwas, das du sehen, messen oder erklären kannst.",
+    href: "/projects",
+    label: "Projekte entdecken",
+    className: "path-build",
+  },
+  {
+    n: "02",
+    title: "Verstehen",
+    text: "GPIO, SPI, Register oder RFID werden zu wiederverwendbarem Wissen statt zu Einmal-Erklärungen.",
+    href: "/concepts",
+    label: "Concepts öffnen",
+    className: "path-understand",
+  },
+  {
+    n: "03",
+    title: "Experimentieren",
+    text: "Beobachte Pins, Protokolle und Signale in kleinen interaktiven Laboren statt sie nur zu lesen.",
+    href: "/lab",
+    label: "Ins Lab",
+    className: "path-lab",
+  },
+  {
+    n: "04",
+    title: "Wiederholen",
+    text: "Prüfe mentale Modelle mit Recall-Fragen und repariere gezielt die Stellen, die noch unscharf sind.",
+    href: "/knowledge",
+    label: "Wissen prüfen",
+    className: "path-recall",
+  },
 ];
 
 export default function Home() {
   return (
     <>
-      <section className="hero section-pad">
-        <div className="hero-copy">
-          <div className="eyebrow"><span /> Lernsystem für Embedded Engineering</div>
-          <h1>Baue Systeme.<br /><em>Verstehe</em> jedes Signal.</h1>
-          <p className="lead">Embedded Lab verbindet reale Projekte mit wiederverwendbaren Concepts und Components. Nicht nur nachbauen – sondern erklären können, warum es funktioniert.</p>
-          <div className="hero-actions">
-            <Link className="button primary" href="/projects/rfid-music-player">RFID-Musikplayer starten <span>→</span></Link>
-            <Link className="button ghost" href="/concepts">Konzeptbibliothek</Link>
-          </div>
-          <div className="hero-stats">
-            <div><strong>11</strong><span>Projektstufen</span></div>
-            <div><strong>8</strong><span>Kernkonzepte</span></div>
-            <div><strong>6</strong><span>Bauteile</span></div>
-          </div>
-        </div>
-        <div className="hero-visual" aria-label="Systemdiagramm RFID-Musikplayer">
-          <div className="visual-top"><span>PROJECT / 001</span><span className="status"><i /> READY</span></div>
-          <div className="system-flow">
-            <div className="system-node"><small>INPUT</small><b>RFID</b><span>13.56 MHz</span></div>
-            <div className="flow-arrow">→</div>
-            <div className="system-node active"><small>PROCESS</small><b>ESP32</b><span>UID → Track</span></div>
-            <div className="flow-arrow">→</div>
-            <div className="system-node"><small>OUTPUT</small><b>AUDIO</b><span>I²S → Speaker</span></div>
-          </div>
-          <div className="mini-board">
-            <div className="board-chip"><span>ESP32</span><i /><i /><i /><i /></div>
-            <div className="board-lines"><i /><i /><i /><i /><i /></div>
-            <div className="board-module">MFRC522</div>
-          </div>
-          <div className="visual-bottom"><span>Next: {rfidSteps[0].title}</span><span>01 / 11</span></div>
+      <section className="home-hero-wrap">
+        <div className="home-bento">
+          <article className="bento-card hero-story-card">
+            <div className="soft-eyebrow"><span /> Embedded Engineering, das man wirklich versteht</div>
+            <h1>
+              Baue echte Systeme.
+              <br />
+              <em>Verstehe, was darin passiert.</em>
+            </h1>
+            <p>
+              Embedded Lab verbindet Projekte, Concepts und Components zu einem Lernsystem. Du baust nicht bloß nach – du siehst, misst und erklärst die Zusammenhänge dahinter.
+            </p>
+            <div className="hero-actions soft-actions">
+              <Link className="soft-button primary" href="/projects/rfid-music-player">
+                RFID-Musikplayer starten <span>↗</span>
+              </Link>
+              <Link className="soft-button secondary" href="/concepts">
+                Concepts ansehen
+              </Link>
+            </div>
+            <div className="soft-stats">
+              <div><strong>11</strong><span>Lernschritte</span></div>
+              <div><strong>8</strong><span>Concepts</span></div>
+              <div><strong>6</strong><span>Components</span></div>
+            </div>
+          </article>
+
+          <Link className="bento-card hero-project-card" href="/projects/rfid-music-player">
+            <div className="card-topline">
+              <span>PROJECT 001</span>
+              <span className="soft-status"><i /> aktiv</span>
+            </div>
+            <div className="project-orbit" aria-hidden="true">
+              <div className="orbit-ring ring-one" />
+              <div className="orbit-ring ring-two" />
+              <div className="orbit-chip">RFID</div>
+              <div className="orbit-core">ESP32</div>
+              <div className="orbit-node">AUDIO</div>
+            </div>
+            <div className="project-card-copy">
+              <small>Starterprojekt</small>
+              <h2>RFID-Musikplayer</h2>
+              <p>Vom ersten Stromkreis bis zur funktionierenden Jukebox.</p>
+            </div>
+            <div className="project-card-footer">
+              <span>01 → 11</span>
+              <b>Projekt öffnen →</b>
+            </div>
+          </Link>
+
+          <Link className="bento-card hero-concept-card" href="/concepts/spi">
+            <div className="card-topline"><span>CONCEPT</span><span>03 / SPI</span></div>
+            <div className="concept-lines" aria-hidden="true">
+              <span>SCK</span><i /><span>MOSI</span><i /><span>MISO</span><i />
+            </div>
+            <div>
+              <small>Wiederverwendbares Wissen</small>
+              <h3>Ein Konzept.<br />Viele Projekte.</h3>
+            </div>
+          </Link>
+
+          <Link className="bento-card hero-lab-card" href="/lab">
+            <div className="card-topline"><span>LAB / LIVE</span><span className="lab-pulse" /></div>
+            <div className="micro-wave" aria-hidden="true">
+              <i /><i /><i /><i /><i /><i /><i /><i />
+            </div>
+            <div>
+              <small>Signale sichtbar machen</small>
+              <h3>Zwischen Code<br />und Hardware.</h3>
+            </div>
+          </Link>
+
+          <article className="bento-card hero-note-card">
+            <span className="note-mark">↳</span>
+            <p>„Ich kann es erklären“ ist das eigentliche Erfolgskriterium.</p>
+            <span className="note-caption">Build · Observe · Explain</span>
+          </article>
         </div>
       </section>
 
-      <section className="section-pad intro-section">
-        <div className="section-kicker">Vier Zugänge · ein Wissensnetz</div>
-        <div className="section-heading"><h2>Wähle deinen Einstieg.<br />Das Wissen bleibt verbunden.</h2><p>Projects referenzieren Concepts und Components, anstatt dieselben Erklärungen immer wieder zu kopieren. Was du einmal wirklich verstanden hast, nimmst du in jedes neue Projekt mit.</p></div>
-        <div className="path-grid">
-          {paths.map((path) => <Link href={path.href} className="path-card" key={path.n}><span className="path-number">{path.n}</span><h3>{path.title}</h3><p>{path.text}</p><span className="card-link">{path.label} →</span></Link>)}
-        </div>
-      </section>
-
-      <section className="section-pad dark-section">
-        <div className="section-kicker light">Nicht Black Box lernen</div>
-        <div className="lab-showcase">
+      <section className="soft-section learning-section">
+        <div className="soft-section-head">
           <div>
-            <h2>Sieh, was zwischen<br />zwei Codezeilen passiert.</h2>
-            <p>Protokolle, Register und physikalische Signale werden als eigene Lernobjekte sichtbar. Der Code ist nur eine Ebene des Systems.</p>
-            <Link className="text-link light" href="/lab">Alle Lab-Module ansehen →</Link>
+            <div className="soft-eyebrow"><span /> Ein Wissensnetz statt einzelner Lektionen</div>
+            <h2>Vier Zugänge.<br />Ein zusammenhängendes System.</h2>
           </div>
-          <SpiSignalDemo />
+          <p>
+            Projects erzeugen die Fragen. Concepts erklären die Prinzipien. Components zeigen, wie diese Prinzipien in echter Hardware auftauchen. Das Lab verbindet alles mit Beobachtung.
+          </p>
+        </div>
+
+        <div className="soft-path-grid">
+          {paths.map((path) => (
+            <Link href={path.href} className={`soft-path-card ${path.className}`} key={path.n}>
+              <div className="path-head"><span>{path.n}</span><i>↗</i></div>
+              <div className="path-symbol" aria-hidden="true"><b /><i /><i /></div>
+              <h3>{path.title}</h3>
+              <p>{path.text}</p>
+              <span className="path-cta">{path.label}</span>
+            </Link>
+          ))}
         </div>
       </section>
 
-      <section className="section-pad project-feature">
-        <div className="feature-index">001</div>
-        <div className="feature-copy"><div className="section-kicker">Erstes vollständiges Projekt</div><h2>RFID-Musikplayer</h2><p>Vom ersten Stromkreis bis zur integrierten Jukebox. Elf Lernschritte bauen technisch und didaktisch aufeinander auf – mit einem echten Gerät als Ergebnis.</p><Link className="button primary" href="/projects/rfid-music-player">Projekt öffnen <span>→</span></Link></div>
-        <div className="feature-steps">{rfidSteps.slice(0, 6).map((step) => <div key={step.id}><span>{String(step.number).padStart(2, "0")}</span><b>{step.title}</b><small>{step.phase}</small></div>)}</div>
+      <section className="soft-section lab-section-soft">
+        <div className="lab-shell">
+          <div className="lab-copy-soft">
+            <div className="soft-eyebrow dark"><span /> Nicht Black Box lernen</div>
+            <h2>Unsichtbare Vorgänge<br />werden beobachtbar.</h2>
+            <p>
+              In Embedded Systems passiert das Entscheidende zwischen Software und Physik. Deshalb bekommen Signale, Register und Protokolle eigene interaktive Lernmodule.
+            </p>
+            <div className="lab-points">
+              <span>Protocol traces</span>
+              <span>Pinout explorer</span>
+              <span>Register views</span>
+            </div>
+            <Link className="soft-button lab-button" href="/lab">Lab öffnen <span>→</span></Link>
+          </div>
+          <div className="lab-demo-frame">
+            <div className="frame-label"><span>LIVE MODULE</span><span>SPI / TRACE</span></div>
+            <SpiSignalDemo />
+          </div>
+        </div>
+      </section>
+
+      <section className="soft-section project-section-soft">
+        <div className="project-editorial-card">
+          <div className="project-editorial-intro">
+            <div className="soft-eyebrow"><span /> Erstes vollständiges Lernprojekt</div>
+            <h2>RFID-Musikplayer</h2>
+            <p>
+              Elf Schritte bilden einen nachvollziehbaren Lernbogen: erst Fundament, dann Kommunikation, Identität, Audio und schließlich Integration.
+            </p>
+            <Link className="soft-button primary" href="/projects/rfid-music-player">Projekt öffnen <span>↗</span></Link>
+          </div>
+          <div className="project-editorial-list">
+            {rfidSteps.slice(0, 6).map((step) => (
+              <Link href={`/projects/rfid-music-player/steps/${step.id}`} key={step.id}>
+                <span>{String(step.number).padStart(2, "0")}</span>
+                <div><b>{step.title}</b><small>{step.phase}</small></div>
+                <i>→</i>
+              </Link>
+            ))}
+            <Link className="remaining-steps" href="/projects/rfid-music-player">
+              <span>+5</span><div><b>Weitere Schritte</b><small>bis zum fertigen Gerät</small></div><i>↗</i>
+            </Link>
+          </div>
+        </div>
       </section>
     </>
   );
