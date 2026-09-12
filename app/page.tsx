@@ -120,6 +120,22 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="brand-mission-strip" aria-labelledby="mission-heading">
+        <div className="brand-mission-mark">
+          <img src="/embedded-labby-logo.webp" alt="Embedded-Labby Wappen mit Adler, offenem Buch und dem Leitmotiv Ideas · Systems · Real World" />
+        </div>
+        <div className="brand-mission-copy">
+          <div className="soft-eyebrow"><span /> Leitbild</div>
+          <h2 id="mission-heading">Ideen verstehen. Systeme bauen. In die reale Welt bringen.</h2>
+          <p>
+            Das Wappen steht für die Mission hinter Embedded Lab: Wissen nicht als isolierte Theorie zu sammeln, sondern es in nachvollziehbare Systeme, Experimente und reale Anwendungen zu übersetzen.
+          </p>
+          <div className="brand-values" aria-label="Leitwerte">
+            <span>Ideas</span><span>Systems</span><span>Real World</span>
+          </div>
+        </div>
+      </section>
+
       <section className="soft-section learning-section">
         <div className="soft-section-head">
           <div>

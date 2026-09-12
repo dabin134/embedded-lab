@@ -1,0 +1,174 @@
+/* Readability + brand integration pass */
+
+/* No important UI label on the homepage should fall into microtype territory. */
+.card-topline,
+.soft-status,
+.project-card-copy small,
+.hero-concept-card small,
+.hero-lab-card small,
+.frame-label,
+.path-head,
+.note-caption,
+.soft-stats span,
+.project-editorial-list > a > span,
+.project-editorial-list small {
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.project-card-copy p {
+  font-size: 15px;
+  line-height: 1.58;
+}
+
+.project-card-footer {
+  font-size: 12px;
+}
+.project-card-footer b {
+  font-size: 13px;
+}
+
+.hero-concept-card h3,
+.hero-lab-card h3 {
+  font-size: 27px;
+  line-height: 1.06;
+}
+
+.soft-path-card p {
+  font-size: 14px;
+  line-height: 1.65;
+}
+.path-cta {
+  font-size: 12px;
+}
+
+.soft-eyebrow,
+.eyebrow,
+.section-kicker {
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.project-editorial-list b {
+  font-size: 15px;
+}
+.project-editorial-list > a {
+  min-height: 74px;
+}
+
+/* Mission emblem — prominent enough to read, but part of the system rather than decoration. */
+.brand-mission-strip {
+  width: min(calc(100% - 32px), 1360px);
+  margin: 14px auto 0;
+  display: grid;
+  grid-template-columns: minmax(250px, .62fr) 1.38fr;
+  align-items: center;
+  gap: clamp(28px, 5vw, 74px);
+  padding: clamp(28px, 4vw, 52px);
+  border: 1px solid rgba(16, 32, 25, .10);
+  border-radius: var(--soft-radius-xl);
+  background:
+    radial-gradient(circle at 8% 30%, rgba(177, 198, 150, .16), transparent 32%),
+    #f7f3ea;
+  box-shadow: 0 14px 38px rgba(20, 31, 25, .045);
+}
+
+.brand-mission-mark {
+  min-height: 260px;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  border-radius: 22px;
+  background: #fbf8f1;
+  border: 1px solid rgba(16, 32, 25, .08);
+}
+.brand-mission-mark img {
+  display: block;
+  width: min(100%, 310px);
+  height: auto;
+  mix-blend-mode: multiply;
+}
+
+.brand-mission-copy h2 {
+  margin: 14px 0 16px;
+  max-width: 760px;
+  font-size: clamp(36px, 4.2vw, 58px);
+  line-height: 1.02;
+  letter-spacing: -.05em;
+  font-weight: 610;
+  color: #102019;
+}
+.brand-mission-copy > p {
+  margin: 0;
+  max-width: 720px;
+  color: #536159;
+  font-size: 16px;
+  line-height: 1.75;
+}
+.brand-values {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+.brand-values span {
+  padding: 8px 11px;
+  border: 1px solid rgba(16, 32, 25, .11);
+  border-radius: 999px;
+  background: #eee9df;
+  color: #34483d;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+}
+
+/* Keep inner-page metadata readable as well. */
+.library-top,
+.library-bottom,
+.component-card > small,
+.roadmap-meta,
+.project-spec span,
+.lesson-progress > span,
+.block-label,
+.module-grid small,
+.pin-table span,
+.relation-cards span,
+.relation-grid h3,
+.relation-grid a span {
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.project-spec strong,
+.roadmap-card > p,
+.library-card p,
+.component-card p,
+.module-grid p {
+  font-size: 14px;
+}
+
+@media (max-width: 820px) {
+  .brand-mission-strip {
+    width: calc(100% - 20px);
+    grid-template-columns: 1fr;
+  }
+  .brand-mission-mark { min-height: 220px; }
+  .brand-mission-copy > p { font-size: 15px; }
+}
+
+@media (max-width: 560px) {
+  .card-topline,
+  .soft-status,
+  .project-card-copy small,
+  .hero-concept-card small,
+  .hero-lab-card small,
+  .frame-label,
+  .path-head,
+  .note-caption,
+  .soft-stats span {
+    font-size: 10px;
+  }
+  .brand-mission-strip { padding: 22px 18px; border-radius: 22px; }
+  .brand-mission-mark { min-height: 190px; padding: 10px; }
+}
