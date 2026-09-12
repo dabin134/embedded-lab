@@ -1,0 +1,273 @@
+/* Palette polish — restrained sand / green-black system and readability pass */
+
+:root {
+  /* Keep the legacy tokens and the Soft Scientific tokens visually aligned. */
+  --bg: #f2eee5;
+  --paper: #faf7f0;
+  --ink: #102019;
+  --muted: #596760;
+  --line: rgba(16, 32, 25, .12);
+  --dark: #0d1814;
+  --accent: #b8e45d;
+  --accent-soft: #e2ebcf;
+
+  --soft-bg: #f2eee5;
+  --soft-surface: #faf7f0;
+  --soft-surface-2: #e8ebe3;
+  --soft-ink: #102019;
+  --soft-muted: #596760;
+  --soft-line: rgba(16, 32, 25, .11);
+  --soft-green: #b8e45d;
+  --soft-sage: #dce5d5;
+  --soft-blue: #e4e8e1;
+  --soft-lilac: #e7e8df;
+  --soft-apricot: #ece4d6;
+  --soft-dark: #0d1814;
+  --soft-shadow: 0 18px 48px rgba(20, 31, 25, .065);
+  --soft-radius-xl: 30px;
+  --soft-radius-lg: 22px;
+  --soft-radius-md: 15px;
+}
+
+html { background: var(--soft-bg); }
+body {
+  background:
+    radial-gradient(circle at 7% -2%, rgba(184, 207, 166, .24), transparent 25%),
+    radial-gradient(circle at 94% 8%, rgba(220, 229, 213, .32), transparent 22%),
+    var(--soft-bg);
+  color: var(--soft-ink);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: #d8e8b4; color: #0d1814; }
+a:focus-visible, button:focus-visible, input:focus-visible {
+  outline: 2px solid #6d9228;
+  outline-offset: 3px;
+}
+
+/* Header: warmer surface, crisper hierarchy, less visual noise. */
+.site-header {
+  border-color: rgba(16, 32, 25, .10);
+  background: rgba(250, 247, 240, .92);
+  box-shadow: 0 10px 30px rgba(20, 31, 25, .045);
+}
+.brand b { color: #4f711d; }
+.brand-mark { background: #e4eadb; }
+.brand-mark i:nth-child(3) { background: #91c935; }
+.main-nav { background: rgba(229, 231, 224, .82); }
+.main-nav a { color: #394740; }
+.main-nav a:hover { background: #faf7f0; color: #102019; }
+.header-cta { background: #0d1814; }
+.header-cta:hover { background: #182820; }
+.site-footer {
+  border-color: var(--soft-line);
+  background: rgba(250, 247, 240, .82);
+}
+
+/* Keep all light surfaces sand-white instead of optical white. */
+.bento-card,
+.learning-section,
+.project-editorial-card,
+.project-list-card,
+.library-card,
+.component-card,
+.roadmap-card,
+.recall-stack article,
+.relation-cards a,
+.check-list label,
+.module-grid article,
+.project-spec {
+  border-color: var(--soft-line);
+}
+
+.bento-card {
+  box-shadow: var(--soft-shadow);
+}
+
+.hero-story-card {
+  background:
+    radial-gradient(circle at 88% 10%, rgba(183, 210, 137, .28), transparent 25%),
+    radial-gradient(circle at 8% 98%, rgba(222, 229, 214, .42), transparent 27%),
+    #faf7f0;
+}
+.hero-story-card h1 { color: #102019; }
+.hero-story-card h1 em { color: #33443b; }
+.hero-story-card > p,
+.soft-section-head > p,
+.project-editorial-intro > p,
+.page-intro > p,
+.project-hero-main > p,
+.concept-hero > div > p,
+.component-hero > div > p {
+  color: #536159;
+}
+.soft-eyebrow { color: #5b6961; }
+.soft-eyebrow > span { background: #88bd30; box-shadow: 0 0 0 5px rgba(136, 189, 48, .12); }
+.soft-button.primary { background: #0d1814; color: #fbf8f1; }
+.soft-button.primary:hover { background: #182820; }
+.soft-button.secondary { background: #f7f3eb; border-color: rgba(16, 32, 25, .13); }
+.soft-button.secondary:hover { background: #fffdf8; }
+.soft-stats span { color: #68766e; }
+
+/* Hero bento: one coherent family rather than four unrelated pastel hues. */
+.hero-project-card {
+  background:
+    radial-gradient(circle at 73% 22%, rgba(255, 253, 247, .42), transparent 29%),
+    linear-gradient(145deg, #dbe4d2 0%, #cfdcc4 100%);
+}
+.hero-project-card .card-topline,
+.card-topline { color: #53645a; }
+.orbit-core { background: #10251d; color: #c9ef76; }
+.orbit-chip, .orbit-node {
+  background: rgba(250, 247, 240, .72);
+  border-color: rgba(16, 32, 25, .12);
+  color: #24372d;
+}
+.project-card-copy small,
+.hero-concept-card small { color: #5e6b64; }
+.project-card-copy p { color: #536159; }
+.project-card-footer { border-top-color: rgba(16, 32, 25, .13); }
+
+.hero-concept-card {
+  background: linear-gradient(145deg, #ece9df 0%, #dfe6dc 100%);
+}
+.concept-lines span { color: #56655d; }
+.concept-lines i {
+  background: linear-gradient(90deg, #66786e 0 42%, transparent 42% 50%, #66786e 50%);
+}
+
+.hero-lab-card {
+  background: linear-gradient(150deg, #12231b 0%, #0b1511 100%);
+}
+.hero-lab-card .card-topline { color: #a3b1aa; }
+.hero-lab-card small { color: #9aa9a1; }
+.hero-lab-card h3 { color: #f2f4ef; }
+.lab-pulse, .micro-wave i { background: #b8e45d; }
+.lab-pulse { box-shadow: 0 0 12px rgba(184, 228, 93, .72); }
+
+.hero-note-card {
+  background: linear-gradient(100deg, #ece5d8 0%, #f1ebdf 100%);
+  border-color: rgba(16, 32, 25, .08);
+}
+.note-mark { background: rgba(250, 247, 240, .74); color: #22352b; }
+.hero-note-card p { color: #394840; }
+.note-caption { color: #706d64; }
+
+/* Learning cards: variation through value and material, not rainbow pastels. */
+.learning-section { background: rgba(250, 247, 240, .76); }
+.soft-path-card { border-color: rgba(16, 32, 25, .08); }
+.path-build { background: #dfe7d6; }
+.path-understand { background: #ece9df; }
+.path-lab { background: #d6e0d2; }
+.path-recall { background: #e9e1d4; }
+.path-head { color: #59685f; }
+.path-symbol b { border-color: rgba(24, 48, 36, .30); }
+.path-symbol i { background: rgba(24, 48, 36, .36); }
+.soft-path-card h3 { color: #13241c; }
+.soft-path-card p { color: #536159; }
+.path-cta { color: #23382d; }
+.soft-path-card:hover { box-shadow: 0 18px 34px rgba(20, 31, 25, .075); }
+
+/* Dark lab remains the high-contrast technical moment. */
+.lab-shell,
+.dark-section,
+.system-strip,
+.knowledge-aside {
+  background-color: #0d1814;
+}
+.lab-shell {
+  background:
+    radial-gradient(circle at 78% 30%, rgba(115, 169, 137, .12), transparent 31%),
+    linear-gradient(150deg, #12231b 0%, #0b1511 75%);
+  box-shadow: 0 24px 54px rgba(9, 20, 15, .14);
+}
+.soft-eyebrow.dark { color: #a4b2aa; }
+.lab-copy-soft > p { color: #adbbb4; }
+.lab-points span { color: #bdc8c2; border-color: #31483c; }
+.lab-button { color: #102019; background: #c2e66b; }
+.lab-button:hover { background: #d0ee87; }
+.lab-demo-frame { border-color: #30483c; background: rgba(7, 15, 11, .50); }
+.frame-label { color: #879b91; }
+.lab-demo-frame .signal-demo { border-color: #31483c; background: #0c1712; }
+
+/* Editorial project area and list readability. */
+.project-editorial-card {
+  background:
+    radial-gradient(circle at 8% 92%, rgba(215, 225, 207, .48), transparent 27%),
+    #faf7f0;
+}
+.project-editorial-list { background: #f7f4ed; border-color: var(--soft-line); }
+.project-editorial-list > a { border-bottom-color: var(--soft-line); }
+.project-editorial-list > a:hover { background: #e9eee2; }
+.project-editorial-list > a > span { color: #68766f; }
+.project-editorial-list small { color: #66746d; }
+.remaining-steps { background: #dfe7d4; }
+
+/* Existing inner pages: unify material and make body copy darker. */
+.project-list-card,
+.library-card,
+.component-card,
+.roadmap-card,
+.recall-stack article,
+.relation-cards a,
+.check-list label,
+.module-grid article {
+  background: rgba(250, 247, 240, .92);
+  box-shadow: 0 8px 26px rgba(20, 31, 25, .035);
+}
+.project-spec { background: rgba(250, 247, 240, .82); }
+.badge { background: #dde8c9; color: #334728; }
+.badge.subtle { background: #e8e3da; color: #605f58; }
+.project-tags span, .chip { background: #f1ede5; border-color: rgba(16, 32, 25, .09); }
+.roadmap-rail span { background: #f8f4ec; }
+.callout { background: #e2ead8; }
+.lesson-sidebar { background: #e9ebe4; }
+.lesson-sidebar nav a.active { background: #dbe5d2; }
+.lesson-block.experiment { background: #e2e9d8; }
+
+/* Readability pass on secondary text across the information architecture. */
+.project-list-card p,
+.library-card p,
+.component-card p,
+.roadmap-card > p,
+.recall-stack p,
+.article-copy > p,
+.lesson-block > p,
+.module-grid p {
+  color: #56645c;
+}
+.library-top,
+.library-bottom,
+.component-card > small,
+.roadmap-meta,
+.project-spec span,
+.lesson-progress > span,
+.block-label {
+  color: #65736b;
+}
+
+/* Consistency: quieter motion, crisper edges, no accidental hard-white flashes. */
+.project-list-card,
+.library-card,
+.component-card,
+.roadmap-card,
+.recall-stack article,
+.relation-cards a,
+.check-list label,
+.module-grid article,
+.project-spec,
+.project-editorial-list,
+.lab-demo-frame {
+  border-width: 1px;
+  border-style: solid;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
