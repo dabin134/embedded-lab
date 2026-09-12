@@ -1,0 +1,74 @@
+/* Executable examples inside Project 001 lessons */
+.code-lesson-block {
+  background:
+    radial-gradient(circle at 92% 8%, rgba(128, 161, 135, .11), transparent 30%),
+    rgba(244, 239, 229, .42);
+}
+
+.code-stack {
+  display: grid;
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.code-panel {
+  overflow: hidden;
+  border: 1px solid rgba(15, 31, 24, .16);
+  border-radius: 16px;
+  background: #15231d;
+  box-shadow: 0 12px 28px rgba(12, 24, 18, .07);
+}
+
+.code-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 11px 14px;
+  border-bottom: 1px solid rgba(238, 242, 236, .10);
+  background: #1b2c24;
+}
+
+.code-head span {
+  color: #e8eee8;
+  font-size: 12px;
+  font-weight: 720;
+}
+
+.code-head code {
+  color: #9eb4a6;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.code-panel pre {
+  margin: 0;
+  padding: 19px 20px;
+  overflow-x: auto;
+  color: #eef3ee;
+  font: 500 13px/1.68 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  tab-size: 2;
+}
+
+.code-panel pre code {
+  color: inherit;
+  font: inherit;
+  white-space: pre;
+}
+
+.code-panel > p {
+  margin: 0;
+  padding: 13px 16px 15px;
+  border-top: 1px solid rgba(238, 242, 236, .10);
+  background: #192920;
+  color: #b9c8be;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+@media (max-width: 620px) {
+  .code-head { align-items: flex-start; }
+  .code-panel pre { padding: 16px 14px; font-size: 12px; }
+}
