@@ -62,8 +62,8 @@ export default function Home() {
             </div>
             <div className="soft-stats">
               <div><strong>11</strong><span>Lernschritte</span></div>
-              <div><strong>8</strong><span>Concepts</span></div>
-              <div><strong>6</strong><span>Components</span></div>
+              <div><strong>11</strong><span>Concepts</span></div>
+              <div><strong>7</strong><span>Components</span></div>
             </div>
           </article>
 
@@ -76,13 +76,13 @@ export default function Home() {
               <div className="orbit-ring ring-one" />
               <div className="orbit-ring ring-two" />
               <div className="orbit-chip">RFID</div>
-              <div className="orbit-core">ESP32</div>
+              <div className="orbit-core">PI 4</div>
               <div className="orbit-node">AUDIO</div>
             </div>
             <div className="project-card-copy">
               <small>Starterprojekt</small>
               <h2>RFID-Musikplayer</h2>
-              <p>Vom ersten Stromkreis bis zur funktionierenden Jukebox.</p>
+              <p>Vom ersten Stromkreis bis zur funktionierenden Raspberry-Pi-Jukebox.</p>
             </div>
             <div className="project-card-footer">
               <span>01 → 11</span>
@@ -91,7 +91,7 @@ export default function Home() {
           </Link>
 
           <Link className="bento-card hero-concept-card" href="/concepts/spi">
-            <div className="card-topline"><span>CONCEPT</span><span>03 / SPI</span></div>
+            <div className="card-topline"><span>CONCEPT</span><span>05 / SPI</span></div>
             <div className="concept-lines" aria-hidden="true">
               <span>SCK</span><i /><span>MOSI</span><i /><span>MISO</span><i />
             </div>
@@ -188,7 +188,7 @@ export default function Home() {
             <div className="soft-eyebrow"><span /> Erstes vollständiges Lernprojekt</div>
             <h2>RFID-Musikplayer</h2>
             <p>
-              Elf Schritte bilden einen nachvollziehbaren Lernbogen: erst Fundament, dann Kommunikation, Identität, Audio und schließlich Integration.
+              Elf Schritte bilden einen nachvollziehbaren Lernbogen: Systemmodell, Embedded Linux, Elektronik, GPIO, SPI, RFID-Physik, Datenmodell, Audio und schließlich Integration.
             </p>
             <Link className="soft-button primary" href="/projects/rfid-music-player">Projekt öffnen <span>↗</span></Link>
           </div>
