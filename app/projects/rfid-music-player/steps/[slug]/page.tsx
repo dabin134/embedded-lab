@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { componentById, conceptById, rfidSteps, stepById, stepLessons } from "@/lib/data";
+import { stepCodeBlocks } from "@/lib/rfid-code";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -15,6 +16,7 @@ export default async function StepPage({ params }: { params: Promise<{ slug: str
 
   const previous = rfidSteps[step.number - 2];
   const next = rfidSteps[step.number];
+  const codeBlocks = stepCodeBlocks[slug] ?? [];
 
   return (
     <div className="lesson-layout">
@@ -105,14 +107,31 @@ export default async function StepPage({ params }: { params: Promise<{ slug: str
           <div className="experiment-status"><span>LAB NOTE</span><strong>Vorhersagen → aufbauen → messen → erklären</strong></div>
         </section>
 
+        {codeBlocks.length > 0 && (
+          <section className="lesson-block code-lesson-block">
+            <div className="block-label">04 · Code & Terminal</div>
+            <h2>Vom Modell zur ausführbaren Form.</h2>
+            <p className="lesson-lead">Diese Beispiele sind bewusst klein gehalten. Führe sie erst aus, wenn du die verwendeten Pins, Daten und Schnittstellen erklären kannst.</p>
+            <div className="code-stack">
+              {codeBlocks.map((block) => (
+                <div className="code-panel" key={`${block.label}-${block.code}`}>
+                  <div className="code-head"><span>{block.label}</span><code>{block.language}</code></div>
+                  <pre><code>{block.code}</code></pre>
+                  {block.note && <p>{block.note}</p>}
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         <section className="lesson-block">
-          <div className="block-label">04 · Beobachten</div>
+          <div className="block-label">{codeBlocks.length > 0 ? "05" : "04"} · Beobachten</div>
           <h2>Was du aus dem Versuch herauslesen sollst</h2>
           <ul className="lesson-list observation-list">{lesson.observe.map((item) => <li key={item}>{item}</li>)}</ul>
         </section>
 
         <section className="lesson-block">
-          <div className="block-label">05 · Erklären & Transfer</div>
+          <div className="block-label">{codeBlocks.length > 0 ? "06" : "05"} · Erklären & Transfer</div>
           <h2>Aus Beobachtung wird Verständnis</h2>
           <div className="question-stack">
             {lesson.reflect.map((item, index) => <div key={item}><span>{String(index + 1).padStart(2, "0")}</span><p>{item}</p></div>)}
@@ -120,13 +139,13 @@ export default async function StepPage({ params }: { params: Promise<{ slug: str
         </section>
 
         <section className="lesson-block troubleshooting-block">
-          <div className="block-label">06 · Debugging</div>
+          <div className="block-label">{codeBlocks.length > 0 ? "07" : "06"} · Debugging</div>
           <h2>Wenn es nicht funktioniert</h2>
           <ul className="lesson-list">{lesson.troubleshooting.map((item) => <li key={item}>{item}</li>)}</ul>
         </section>
 
         <section className="lesson-block">
-          <div className="block-label">07 · Erfolgskriterium</div>
+          <div className="block-label">{codeBlocks.length > 0 ? "08" : "07"} · Erfolgskriterium</div>
           <h2>Kannst du weiter?</h2>
           <div className="check-list">
             {lesson.check.map((item) => <label key={item}><input type="checkbox" /> <span>{item}</span></label>)}
@@ -136,7 +155,7 @@ export default async function StepPage({ params }: { params: Promise<{ slug: str
 
         {lesson.sources.length > 0 && (
           <section className="lesson-block source-block">
-            <div className="block-label">08 · Quellen</div>
+            <div className="block-label">{codeBlocks.length > 0 ? "09" : "08"} · Quellen</div>
             <h2>Primär- und Referenzquellen</h2>
             <div className="source-list">
               {lesson.sources.map((source) => (
