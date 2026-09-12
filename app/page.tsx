@@ -2,6 +2,8 @@ import Link from "next/link";
 import { SpiSignalDemo } from "@/components/spi-signal-demo";
 import { rfidSteps } from "@/lib/data";
 
+const publicBase = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 const paths = [
   {
     n: "01",
@@ -122,7 +124,7 @@ export default function Home() {
 
       <section className="brand-mission-strip" aria-labelledby="mission-heading">
         <div className="brand-mission-mark">
-          <img src="/embedded-labby-logo.webp" alt="Embedded-Labby Wappen mit Adler, offenem Buch und dem Leitmotiv Ideas · Systems · Real World" />
+          <img src={`${publicBase}/embedded-labby-logo.webp`} alt="Embedded-Labby Wappen mit Adler, offenem Buch und dem Leitmotiv Ideas · Systems · Real World" />
         </div>
         <div className="brand-mission-copy">
           <div className="soft-eyebrow"><span /> Leitbild</div>
