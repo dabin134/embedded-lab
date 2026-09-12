@@ -3,6 +3,7 @@ import "./globals.css";
 import "./soft-scientific.css";
 import "./palette-polish.css";
 import "./readability-brand.css";
+import "./project-learning.css";
 import { SiteHeader } from "@/components/site-header";
 
 export const metadata: Metadata = {
