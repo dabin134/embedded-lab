@@ -1,0 +1,205 @@
+/* RFID Project — final color hierarchy pass
+   Purpose: keep the green/sand identity while making section > card > content levels visibly distinct. */
+
+.rfid-project-page {
+  --rfid-ink: #153129;
+  --rfid-green: #315846;
+  --rfid-moss: #647b55;
+  --rfid-sage: #d8e4d5;
+  --rfid-mist: #dbe7e3;
+  --rfid-sand: #eadfce;
+  --rfid-olive: #e3e7cf;
+  --rfid-clay: #e6d8c7;
+  --rfid-card-sage: #e9f0e6;
+  --rfid-card-mist: #e7efec;
+  --rfid-card-sand: #f1e7d8;
+  --rfid-card-olive: #ecefdc;
+  --rfid-line: rgba(29, 55, 44, .13);
+  --rfid-shadow: 0 16px 38px rgba(31, 51, 42, .055);
+  background:
+    radial-gradient(circle at 8% 10%, rgba(171, 194, 158, .18), transparent 24%),
+    radial-gradient(circle at 92% 38%, rgba(166, 191, 184, .14), transparent 24%),
+    linear-gradient(180deg, #eeece3 0%, #e9e6dc 46%, #edf0e8 100%);
+}
+
+/* Keep headings and copy clearly anchored against the softer surfaces. */
+.rfid-project-page h1,
+.rfid-project-page h2,
+.rfid-project-page h3 { color: var(--rfid-ink); }
+
+.rfid-project-page .section-kicker,
+.rfid-project-page .eyebrow { color: #456554; }
+
+/* HERO — green wash, cockpit cards with distinct tones instead of four white boxes. */
+.rfid-project-page .project-hero {
+  background:
+    radial-gradient(circle at 86% 12%, rgba(201, 243, 106, .25), transparent 23%),
+    radial-gradient(circle at 3% 100%, rgba(177, 199, 164, .42), transparent 30%),
+    linear-gradient(145deg, #f1efe5 0%, #dce7d8 100%);
+  border-color: var(--rfid-line);
+}
+
+.rfid-project-page .project-spec > div {
+  border-color: var(--rfid-line);
+  box-shadow: 0 10px 26px rgba(30, 50, 41, .05);
+}
+.rfid-project-page .project-spec > div:nth-child(1) { background: var(--rfid-card-sage); }
+.rfid-project-page .project-spec > div:nth-child(2) { background: var(--rfid-card-sand); }
+.rfid-project-page .project-spec > div:nth-child(3) { background: var(--rfid-card-mist); }
+.rfid-project-page .project-spec > div:nth-child(4) { background: var(--rfid-card-olive); }
+
+/* SYSTEM FLOW — one coherent green field, four clearly separated stages. */
+.rfid-project-page .project-system-flow {
+  background:
+    radial-gradient(circle at 90% 0%, rgba(201, 243, 106, .16), transparent 20%),
+    #cfded2;
+  border-color: rgba(31, 65, 50, .14);
+  box-shadow: var(--rfid-shadow);
+}
+
+.rfid-project-page .system-flow-grid article {
+  border-color: var(--rfid-line);
+  box-shadow: 0 10px 24px rgba(30, 50, 41, .045);
+}
+.rfid-project-page .system-flow-grid article:nth-child(1) { background: #edf1e3; }
+.rfid-project-page .system-flow-grid article:nth-child(2) { background: #e7efe9; }
+.rfid-project-page .system-flow-grid article:nth-child(3) { background: #efe7d9; }
+.rfid-project-page .system-flow-grid article:nth-child(4) { background: #e6ebd8; }
+
+/* SECTION COLORS — each large chapter is identifiable at a glance. */
+.rfid-project-page .project-foundation {
+  background: var(--rfid-sand);
+  border-color: rgba(91, 74, 55, .11);
+}
+
+.rfid-project-page .project-equipment {
+  background: var(--rfid-sage);
+  border-color: rgba(45, 74, 57, .12);
+}
+
+.rfid-project-page .project-goals {
+  background: var(--rfid-mist);
+  border-color: rgba(38, 73, 66, .12);
+}
+
+.rfid-project-page .learning-architecture {
+  background: var(--rfid-olive);
+  border-color: rgba(76, 84, 47, .11);
+}
+
+.rfid-project-page .roadmap-section {
+  background: #e9dfd3;
+  border-color: rgba(89, 71, 54, .11);
+}
+
+.rfid-project-page .project-transfer {
+  background: #d2dfd4;
+  border-color: rgba(42, 72, 54, .13);
+}
+
+.rfid-project-page .project-reference {
+  background: var(--rfid-clay);
+  border-color: rgba(93, 71, 50, .12);
+}
+
+/* FOUNDATION — three different learning levels should not visually merge. */
+.rfid-project-page .foundation-grid > article {
+  border: 1px solid var(--rfid-line);
+  box-shadow: 0 10px 26px rgba(31, 49, 40, .04);
+}
+.rfid-project-page .foundation-grid > article:nth-child(1) { background: #e8efe6; }
+.rfid-project-page .foundation-grid > article:nth-child(2) { background: #f1e7d8; }
+.rfid-project-page .foundation-grid > article:nth-child(3) { background: #e4ece9; }
+
+/* HARDWARE — alternating sage/sand/mist cards make the list scanable. */
+.rfid-project-page .equipment-grid > article {
+  border-color: rgba(32, 65, 49, .13);
+  box-shadow: 0 10px 24px rgba(31, 49, 40, .04);
+}
+.rfid-project-page .equipment-grid > article:nth-child(3n + 1) { background: #eef1e3; }
+.rfid-project-page .equipment-grid > article:nth-child(3n + 2) { background: #e8f0eb; }
+.rfid-project-page .equipment-grid > article:nth-child(3n) { background: #f0e6d7; }
+
+.rfid-project-page .equipment-card-top small {
+  background: #cad9c6;
+  color: #304d3d;
+}
+
+/* LEARNING GOALS — this is the screenshot problem: cards now contrast clearly with the section. */
+.rfid-project-page .goal-list > article {
+  border-color: rgba(37, 69, 60, .14);
+  box-shadow: 0 8px 20px rgba(31, 49, 40, .035);
+}
+.rfid-project-page .goal-list > article:nth-child(3n + 1) { background: #f0e6d7; }
+.rfid-project-page .goal-list > article:nth-child(3n + 2) { background: #e7efe5; }
+.rfid-project-page .goal-list > article:nth-child(3n) { background: #e4ece9; }
+
+.rfid-project-page .goal-list > article > span {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #315846;
+  color: #edf4e7;
+  font-size: 11px;
+}
+
+.rfid-project-page .goal-list small {
+  color: #365846;
+  font-size: 12px;
+}
+
+/* LEARNING MODES — four categories, four calm family colors. */
+.rfid-project-page .learning-mode-grid article {
+  border-color: rgba(57, 72, 47, .12);
+  box-shadow: 0 8px 22px rgba(45, 54, 38, .035);
+}
+.rfid-project-page .learning-mode-grid article:nth-child(1) { background: #e8f0e6; }
+.rfid-project-page .learning-mode-grid article:nth-child(2) { background: #f1e5d8; }
+.rfid-project-page .learning-mode-grid article:nth-child(3) { background: #e3ece9; }
+.rfid-project-page .learning-mode-grid article:nth-child(4) { background: #e8ead3; }
+
+/* ROADMAP — alternating cards help the eye follow the vertical path. */
+.rfid-project-page .roadmap-step:nth-child(odd) .roadmap-card {
+  background: #edf1e6;
+  border-color: rgba(43, 69, 54, .12);
+}
+.rfid-project-page .roadmap-step:nth-child(even) .roadmap-card {
+  background: #f1e7da;
+  border-color: rgba(83, 67, 49, .11);
+}
+
+/* TRANSFER + REFERENCES — keep end-of-project thinking visually special. */
+.rfid-project-page .transfer-question-list article:nth-child(odd) {
+  background: #e9efe6;
+  border-color: rgba(40, 70, 52, .13);
+}
+.rfid-project-page .transfer-question-list article:nth-child(even) {
+  background: #efe5d8;
+  border-color: rgba(83, 66, 49, .11);
+}
+
+.rfid-project-page .reference-card {
+  background: #f0e5d5;
+  border-color: rgba(91, 70, 49, .13);
+}
+
+.rfid-project-page .reference-links a {
+  background: #dfe9dd;
+  border-color: rgba(45, 73, 55, .13);
+}
+
+/* Slightly stronger edges make cards readable without looking boxed-in. */
+.rfid-project-page .project-panel,
+.rfid-project-page .project-system-flow,
+.rfid-project-page .project-hero {
+  box-shadow: 0 18px 42px rgba(31, 49, 40, .055);
+}
+
+@media (max-width: 760px) {
+  .rfid-project-page .goal-list > article > span {
+    width: 30px;
+    height: 30px;
+  }
+}
