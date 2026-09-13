@@ -131,7 +131,7 @@ export default async function StepPage({ params }: { params: Promise<{ slug: str
         </section>
 
         <section className="lesson-block">
-          <div className="block-label">{codeBlocks.length > 0 ? "06" : "05"} · Erklären & Transfer</div>
+          <div className="block-label">{codeBlocks.length > 0 ? "06" : "05"} · Think Deeper</div>
           <h2>Aus Beobachtung wird Verständnis</h2>
           <div className="question-stack">
             {lesson.reflect.map((item, index) => <div key={item}><span>{String(index + 1).padStart(2, "0")}</span><p>{item}</p></div>)}
