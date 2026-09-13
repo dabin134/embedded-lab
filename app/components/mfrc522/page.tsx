@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { componentLearning } from "@/lib/rfid-code";
 
 const pins = [
   ["3.3V", "Versorgung", "3,3 V"],
@@ -12,6 +13,7 @@ const pins = [
 ];
 
 export default function MfrcPage() {
+  const learning = componentLearning.mfrc522;
   return (
     <>
       <section className="component-hero section-pad">
@@ -54,14 +56,22 @@ export default function MfrcPage() {
         </article>
       </section>
 
+      <section className="section-pad component-learning">
+        <div className="section-kicker">Learning check</div>
+        <h2>Quick Check & Think Deeper</h2>
+        <div className="learning-grid">
+          <article className="learning-card quick-check-card"><div className="learning-label">Quick Check</div><h3>{learning.quickCheck?.question}</h3><details><summary>Lösung prüfen</summary><p>{learning.quickCheck?.answer}</p></details></article>
+          <article className="learning-card think-deeper-card"><div className="learning-label">Think Deeper</div><div className="deep-question-list">{learning.thinkDeeper?.map((question, index) => <div key={question}><span>{String(index + 1).padStart(2, "0")}</span><p>{question}</p></div>)}</div></article>
+        </div>
+        {learning.connections && <div className="component-connections"><div className="section-kicker">Connections</div><div className="connection-grid">{learning.connections.map((connection) => <article key={connection.title}><span>↗ Verbindung</span><h3>{connection.title}</h3><p>{connection.text}</p></article>)}</div></div>}
+      </section>
+
       <section className="section-pad pin-section">
         <div className="section-heading">
           <div><div className="section-kicker">Pinout Explorer</div><h2>Pins nach Funktion,<br />nicht nach Position.</h2></div>
           <p>Die Modulbeschriftung ist nur die Oberfläche. Für den Aufbau zählt, welche elektrische oder protokollarische Aufgabe eine Leitung übernimmt. Die Tabelle bezieht sich auf unseren Raspberry-Pi-4-Aufbau.</p>
         </div>
-        <div className="pin-table">
-          {pins.map(([pin, role, connection]) => <div key={pin}><code>{pin}</code><b>{role}</b><span>{connection}</span></div>)}
-        </div>
+        <div className="pin-table">{pins.map(([pin, role, connection]) => <div key={pin}><code>{pin}</code><b>{role}</b><span>{connection}</span></div>)}</div>
         <div className="callout component-callout"><span>Wichtig</span><p>Der auf vielen RC522-Boards mit <b>SDA</b> beschriftete Pin wird in unserem SPI-Aufbau als <b>SS/CS</b> benutzt. Das ist eine häufige Quelle von Verwirrung.</p></div>
       </section>
 
