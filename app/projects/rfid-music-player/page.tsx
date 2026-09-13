@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ProjectRoadmap } from "@/components/project-roadmap";
+import { stepLearning } from "@/lib/rfid-code";
 
 const hardware = [
   ["Raspberry Pi 4 Model B", "Embedded-Linux-Host, GPIO, SPI, Netzwerk und Mediensteuerung"],
@@ -20,7 +21,16 @@ const learningGoals = [
   "Hardware-, Software-, Audio- und Netzwerkfehler methodisch auseinanderhalten",
 ];
 
+const learningModes = [
+  ["Quick Check", "kleine, eindeutige Selbstkontrolle nach einem Concept oder einer Component"],
+  ["Think Deeper", "offene Erklärfrage: Ursache, Wirkung, Schnittstellen und Fachbegriffe selbst formulieren"],
+  ["Connections", "konzeptionelle Querverbindungen zu anderer Hardware und anderen Systemen – noch keine Prüfung"],
+  ["Transfer", "erst nach dem Gesamtprojekt: das gelernte Modell auf ein neues technisches System übertragen"],
+];
+
 export default function RfidProjectPage() {
+  const transferQuestions = stepLearning.integration.transfer ?? [];
+
   return (
     <>
       <section className="project-hero section-pad">
@@ -68,9 +78,7 @@ export default function RfidProjectPage() {
           <p>Wir kaufen möglichst wenig Spezialhardware. Breadboard, Multimeter und Jumper bleiben für alle folgenden Embedded-Projekte relevant.</p>
         </div>
         <div className="equipment-grid">
-          {hardware.map(([name, role], index) => (
-            <div key={name}><span>{String(index + 1).padStart(2, "0")}</span><div><b>{name}</b><p>{role}</p></div></div>
-          ))}
+          {hardware.map(([name, role], index) => <div key={name}><span>{String(index + 1).padStart(2, "0")}</span><div><b>{name}</b><p>{role}</p></div></div>)}
         </div>
       </section>
 
@@ -79,8 +87,16 @@ export default function RfidProjectPage() {
           <div><div className="section-kicker">Lernziele</div><h2>Am Ende soll nicht nur Musik laufen.</h2></div>
           <p>Das Gerät ist das sichtbare Ergebnis. Das eigentliche Ziel ist ein belastbares mentales Modell, das du in das nächste Projekt mitnehmen kannst.</p>
         </div>
-        <div className="goal-list">
-          {learningGoals.map((goal, index) => <div key={goal}><span>{String(index + 1).padStart(2, "0")}</span><p>{goal}</p></div>)}
+        <div className="goal-list">{learningGoals.map((goal, index) => <div key={goal}><span>{String(index + 1).padStart(2, "0")}</span><p>{goal}</p></div>)}</div>
+      </section>
+
+      <section className="section-pad learning-architecture">
+        <div className="section-heading learning-heading">
+          <div><div className="section-kicker">Lernlogik</div><h2>Vier Fragentypen,<br />vier verschiedene Aufgaben.</h2></div>
+          <p>Die Website soll nicht jeden Gedanken automatisch bewerten. Sie liefert gute Fragen; tiefe Erklärungen können separat mit einem LLM-Tutor diskutiert werden.</p>
+        </div>
+        <div className="learning-mode-grid">
+          {learningModes.map(([title, description], index) => <article key={title}><span>{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{description}</p></article>)}
         </div>
       </section>
 
@@ -90,6 +106,16 @@ export default function RfidProjectPage() {
           <p>Jeder Schritt hat ein überprüfbares Ergebnis. Concepts werden genau dort verknüpft, wo sie im Projekt eine echte Funktion bekommen.</p>
         </div>
         <ProjectRoadmap />
+      </section>
+
+      <section className="section-pad project-transfer">
+        <div className="section-heading learning-heading">
+          <div><div className="section-kicker">Nach Schritt 11 · Transfer</div><h2>Jetzt das Modell<br />aus der Jukebox lösen.</h2></div>
+          <p>Diese Fragen sind bewusst erst für den Projektabschluss gedacht. Hier geht es nicht mehr um Wiedergeben, sondern darum, das gelernte Systemdenken auf andere Hardware zu übertragen.</p>
+        </div>
+        <div className="transfer-question-list">
+          {transferQuestions.map((question, index) => <article key={question}><span>{String(index + 1).padStart(2, "0")}</span><p>{question}</p></article>)}
+        </div>
       </section>
 
       <section className="section-pad project-reference">
