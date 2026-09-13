@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { componentById, components, conceptById, rfidSteps } from "@/lib/data";
+import { componentLearning } from "@/lib/rfid-code";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -13,6 +14,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
   if (!component) notFound();
 
   const projectSteps = rfidSteps.filter((step) => step.components.includes(component.id));
+  const learning = componentLearning[component.id];
 
   return (
     <>
@@ -38,6 +40,42 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
           <ul className="lesson-list">{component.electrical.map((item) => <li key={item}>{item}</li>)}</ul>
         </article>
       </section>
+
+      {learning && (
+        <section className="section-pad component-learning">
+          <div className="section-kicker">Learning check</div>
+          <h2>Quick Check & Think Deeper</h2>
+          <div className="learning-grid">
+            {learning.quickCheck && (
+              <article className="learning-card quick-check-card">
+                <div className="learning-label">Quick Check</div>
+                <h3>{learning.quickCheck.question}</h3>
+                <details><summary>Lösung prüfen</summary><p>{learning.quickCheck.answer}</p></details>
+              </article>
+            )}
+            {learning.thinkDeeper && (
+              <article className="learning-card think-deeper-card">
+                <div className="learning-label">Think Deeper</div>
+                <div className="deep-question-list">
+                  {learning.thinkDeeper.map((question, index) => (
+                    <div key={question}><span>{String(index + 1).padStart(2, "0")}</span><p>{question}</p></div>
+                  ))}
+                </div>
+              </article>
+            )}
+          </div>
+          {learning.connections && (
+            <div className="component-connections">
+              <div className="section-kicker">Connections</div>
+              <div className="connection-grid">
+                {learning.connections.map((connection) => (
+                  <article key={connection.title}><span>↗ Verbindung</span><h3>{connection.title}</h3><p>{connection.text}</p></article>
+                ))}
+              </div>
+            </div>
+          )}
+        </section>
+      )}
 
       <section className="section-pad component-project-use">
         <div className="section-kicker">Im Projekt</div>
