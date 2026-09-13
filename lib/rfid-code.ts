@@ -175,3 +175,136 @@ while True:
     },
   ],
 };
+
+export type LearningPrompt = {
+  quickCheck?: { question: string; answer: string };
+  thinkDeeper?: string[];
+  connections?: { title: string; text: string }[];
+  transfer?: string[];
+};
+
+export const conceptLearning: Record<string, LearningPrompt> = {
+  "embedded-system": {
+    quickCheck: { question: "Welcher Teil der Jukebox entscheidet, welches Album zu einer UID gehört?", answer: "Die Anwendungssoftware auf dem Raspberry Pi. Tag und Reader liefern Identifikation; die Bedeutung UID → Album entsteht erst im Software-Mapping." },
+    thinkDeeper: ["Zerlege die Jukebox in Eingabe, Kommunikation, Verarbeitung, Entscheidung und Ausgabe. Welche konkrete Information überschreitet jeweils die Systemgrenze?", "Wenn die UID korrekt erscheint, aber keine Musik startet: Welche Subsysteme kannst du bereits ausschließen?"],
+    connections: [
+      { title: "Thermostat", text: "Temperatursensor → Messwert → Regellogik → Heizung. Andere Hardware, dieselbe Systemdenkweise." },
+      { title: "Drohne", text: "IMU → Flugcontroller → Regelalgorithmus → Motorsteller. Komplexer, aber wieder als gekoppelte Subsysteme analysierbar." },
+    ],
+  },
+  electricity: {
+    quickCheck: { question: "Warum schützt ein Serienwiderstand eine LED?", answer: "Er begrenzt den Strom. Näherungsweise gilt I = (UQuelle − ULED) / R." },
+    thinkDeeper: ["Warum ist GND ein Bezugspotenzial und kein Ort, an dem Strom verschwindet?", "Was ändert sich bei 33 Ω statt 330 Ω? Begründe qualitativ und rechnerisch."],
+    connections: [{ title: "Motorsteuerung", text: "Auch Motoren brauchen Versorgung und kontrollierten Strom – nur in deutlich höheren Leistungsbereichen." }, { title: "Sensorik", text: "Auch Sensorsignale sind Spannungen relativ zu einem gemeinsamen Bezugspotenzial." }],
+  },
+  "embedded-linux": {
+    quickCheck: { question: "Liegt das Betriebssystem des ausgeschalteten Raspberry Pi im RAM?", answer: "Nein. Es liegt dauerhaft auf dem Massenspeicher, typischerweise der microSD-Karte. Beim Booten werden benötigte Teile in den RAM geladen." },
+    thinkDeeper: ["Welche Aufgaben übernimmt Linux zwischen Python und Hardware – und welche davon müsstest du bei einem Bare-Metal-Mikrocontroller selbst lösen?", "Ein alter Laptop soll die Jukebox übernehmen: Welche Pi-Funktionen besitzt er bereits, welche fehlen und wie könntest du GPIO/SPI ergänzen?", "Wie weit könnte ein Android-Smartphone dieselbe Rolle übernehmen? Trenne Rechenleistung, Betriebssystem, Netzwerk, Audio und direkten Hardwarezugriff."],
+    connections: [
+      { title: "Alter Laptop", text: "CPU, RAM, Speicher, Linux, Netzwerk und Audio sind vorhanden. Ein frei zugänglicher 3,3-V-GPIO-/SPI-Header fehlt typischerweise; USB-Mikrocontroller oder USB-SPI-Adapter können diese Lücke schließen." },
+      { title: "Smartphone", text: "SoC, RAM, Speicher, Netzwerk, Audio, Kamera und Sensoren sind vorhanden. Android schränkt direkten Hardwarezugriff stärker ein; externe Elektronik wird eher über USB-OTG, Bluetooth oder Netzwerk angebunden." },
+      { title: "Mikrocontroller", text: "ESP32 oder Arduino bieten unmittelbaren GPIO-Zugriff, aber kein vollwertiges Linux. Dadurch verschiebt sich die Softwarearchitektur." },
+    ],
+  },
+  gpio: {
+    quickCheck: { question: "Ist GPIO-HIGH nur eine abstrakte 1?", answer: "Logisch ja, physikalisch ist es ein realer Spannungsbereich um 3,3 V relativ zu GND. Die Strombelastbarkeit bleibt begrenzt." },
+    thinkDeeper: ["Erkläre den vollständigen Weg von einer Python-Anweisung bis zum messbaren Spannungspegel am Pin.", "Warum kann ein GPIO eine LED, aber keinen Motor oder passiven Lautsprecher direkt treiben?"],
+    connections: [{ title: "Leistungstreiber", text: "Transistoren, MOSFETs und Motortreiber trennen das kleine GPIO-Steuersignal von der eigentlichen Leistungsversorgung." }],
+  },
+  spi: {
+    quickCheck: { question: "Wozu dient Chip Select bei SPI?", answer: "Er aktiviert gezielt das Peripheriegerät, mit dem der Controller gerade kommuniziert." },
+    thinkDeeper: ["Beschreibe einen Registerzugriff so, dass SCLK, MOSI, MISO und CS jeweils eine konkrete Rolle haben.", "Warum reicht die Kenntnis von SPI allein nicht aus, um den MFRC522 sinnvoll anzusprechen?"],
+    connections: [{ title: "Displays & SD-Karten", text: "Der Transportmechanismus kann derselbe sein; die Bedeutung der Bytes wird jeweils vom konkreten Geräteprotokoll festgelegt." }, { title: "Drohnen-Sensorik", text: "IMUs werden häufig über SPI oder I²C angebunden – das Kommunikationskonzept taucht später wieder auf." }],
+  },
+  "data-representation": {
+    quickCheck: { question: "Welches Bitmuster entspricht 0x92?", answer: "1001 0010. Jede Hex-Ziffer repräsentiert vier Bits." },
+    thinkDeeper: ["Warum ist ein Registerwert ohne Datenblatt semantisch fast bedeutungslos?", "Wie würdest du aus einem Byte einzelne Statusbits isolieren und interpretieren?"],
+    connections: [{ title: "Sensorregister", text: "Gyroskope, Beschleunigungssensoren und ADCs präsentieren Messwerte und Status ebenfalls als adressierbare Bytes." }],
+  },
+  rfid: {
+    quickCheck: { question: "Woher erhält ein passiver RFID-Tag seine Energie?", answer: "Aus dem elektromagnetischen Nahfeld des Readers; die Kopplung induziert Energie in der Tag-Antenne." },
+    thinkDeeper: ["Warum ist Reader↔Tag-Kommunikation nicht einfach WLAN in klein?", "Erkläre getrennt, wie Energie zum Tag gelangt und wie Information zurück zum Reader kommt."],
+    connections: [{ title: "NFC", text: "NFC arbeitet ebenfalls bei 13,56 MHz und nutzt verwandte Nahfeldprinzipien." }, { title: "Induktive Kopplung", text: "Das Grundprinzip zeitlich veränderlicher magnetischer Felder begegnet dir auch bei Transformatoren und drahtloser Energieübertragung." }],
+  },
+  uid: {
+    quickCheck: { question: "Enthält die UID bereits die Information, welches Album gespielt werden soll?", answer: "Nein. Die UID ist nur eine Kennung; die Software ordnet ihr erst eine Medienaktion zu." },
+    thinkDeeper: ["Warum ist eine UID ein brauchbarer Schlüssel für die Jukebox, aber nicht automatisch ein sicherer Identitätsnachweis?", "Warum sollten Rohbytes, formatierte UID und Medien-Mapping getrennte Ebenen bleiben?"],
+    connections: [{ title: "Datenbankschlüssel", text: "Eine ID verweist auf Bedeutung, ohne den zugehörigen Datensatz selbst zu enthalten." }],
+  },
+  "software-events": {
+    quickCheck: { question: "Warum sollte Reader-Code nicht direkt Spotify-Code enthalten?", answer: "Erfassung, Zuordnung und Aktion sind getrennte Verantwortlichkeiten. Das macht das System testbarer und austauschbarer." },
+    thinkDeeper: ["Entwirf den Ereignisfluss für bekannte UID, unbekannte UID, wiederholten Scan und fehlgeschlagene Medienaktion.", "Welche Zustände verhindern ein unwartbares if/else-Geflecht?"],
+    connections: [{ title: "Smart Home & Robotik", text: "Sensorereignis → Regel → Aktion ist dieselbe Grundstruktur wie bei Bewegung → Bedingung → Licht oder Sensor → Zustand → Motoraktion." }],
+  },
+  "audio-network": {
+    quickCheck: { question: "Transportiert eine Web API zwangsläufig den eigentlichen Audiostrom?", answer: "Nein. Eine API kann nur Befehle und Zustände transportieren; der Audio-Stream kann an anderer Stelle entstehen." },
+    thinkDeeper: ["Trenne lokale Audioausgabe, Netzwerksteuerung und entfernten Musikdienst. Wo können jeweils Fehler entstehen?", "Wie würdest du die Jukebox so umbauen, dass sie vollständig ohne Internet funktioniert?"],
+    connections: [{ title: "Local-first Dienste", text: "Dasselbe Prinzip lässt sich auf einen lokalen Medienserver und später auf ein cloud-optionales Heimnetz übertragen." }],
+  },
+  integration: {
+    quickCheck: { question: "Warum ist 'alles anschließen und dann testen' eine schlechte Debugging-Strategie?", answer: "Weil mehrere Fehlerquellen gleichzeitig aktiv sind. Isolierte Tests mit klaren Sollzuständen verkleinern den Suchraum." },
+    thinkDeeper: ["Definiere für Versorgung, SPI, RFID, Mapping und Audio jeweils einen isolierten Test mit eindeutigem Sollzustand.", "Welche Informationen braucht eine andere Person, um deinen Prototyp reproduzierbar nachzubauen?"],
+    connections: [{ title: "Engineering allgemein", text: "Modularisierung, Schnittstellentests und reproduzierbare Fehlerbilder gelten genauso bei Drohnen, Robotern, Messgeräten und Servern." }],
+  },
+};
+
+export const componentLearning: Record<string, LearningPrompt> = {
+  "raspberry-pi-4": {
+    quickCheck: { question: "Ist der Raspberry Pi funktional näher an einem Arduino oder an einem kleinen Linux-PC?", answer: "An einem kleinen Linux-PC: SoC, RAM, Speicher, Betriebssystem, Prozesse und Netzwerk – plus gut zugänglicher GPIO-Header." },
+    thinkDeeper: ["Nimm einen alten Laptop gedanklich auseinander: Welche Funktionsblöcke des Raspberry Pi findest du auf seinem Mainboard wieder und welche Pi-Eigenschaft fehlt?", "Wie würdest du einen alten Laptop so erweitern, dass er die RFID-Jukebox trotz fehlendem GPIO-Header übernimmt?", "Wie weit könnte ein altes Android-Smartphone dieselbe Rolle übernehmen und wo wäre externe Hardware nötig?"],
+    connections: [
+      { title: "Laptop als Pi-Ersatz", text: "Rechnen, Linux, Netzwerk, Speicher und Audio sind schon vorhanden. Externe I/O-Hardware kann fehlende GPIO-/SPI-Funktionen ergänzen." },
+      { title: "Smartphone als Rechenknoten", text: "Rechnen, Netzwerk, Audio, Kamera und Sensoren sind vorhanden; externe Elektronik bindest du eher über USB-OTG, Bluetooth oder Netzwerk an." },
+      { title: "Router / Mini-PC", text: "Viele Geräte sind im Kern ebenfalls kleine Linux-Rechner. Entscheidend sind Betriebssystem und verfügbare Schnittstellen, nicht die Gehäuseform." },
+    ],
+  },
+  "breadboard-led": {
+    quickCheck: { question: "Was musst du vor dem Einschalten mindestens prüfen?", answer: "Stromweg, LED-Polarität und passende Strombegrenzung." },
+    thinkDeeper: ["Warum ist die LED-Schaltung ein Modell für spätere Hardwaretests und nicht nur eine Anfängerübung?"],
+    connections: [{ title: "Prototyping", text: "Reversible, messbare Zwischenstufen sind auch bei Sensor-, Motor- und Kommunikationsschaltungen zentral." }],
+  },
+  mfrc522: {
+    quickCheck: { question: "Welche Aufgabe erledigt der MFRC522 – und welche ausdrücklich nicht?", answer: "Er übernimmt RFID-nahe Signalverarbeitung und stellt Register bereit. Er entscheidet nicht über das Album." },
+    thinkDeeper: ["Verfolge eine Kartenannäherung vom elektromagnetischen Feld bis zu einem Registerwert, den der Pi lesen kann.", "Warum verbindet diese Component Physik, digitale Kommunikation und Registerprogrammierung?"],
+    connections: [{ title: "Sensor-ICs", text: "Wie viele Sensorchips kapselt der MFRC522 komplexe Physik und präsentiert dem Host Ergebnisse über Register." }],
+  },
+  "rfid-tag": {
+    quickCheck: { question: "Ist die Musikdatei auf dem RFID-Tag gespeichert?", answer: "Nein. Der Tag liefert Identifikation; die Medienzuordnung liegt in der Anwendung." },
+    thinkDeeper: ["Welche Eigenschaften des Tags sind physikalisch, welche protokollarisch und welche Bedeutung entsteht erst durch unsere Software?"],
+  },
+  multimeter: {
+    quickCheck: { question: "Warum misst man Spannung parallel, Widerstand aber nur spannungsfrei?", answer: "Spannung ist eine Potentialdifferenz zwischen zwei Punkten. Bei der Widerstandsmessung speist das Multimeter selbst einen Messstrom ein; Fremdspannung verfälscht die Messung und kann schaden." },
+    thinkDeeper: ["Welche Messung würdest du zuerst machen, wenn der MFRC522 gar nicht reagiert – und warum noch vor jeder Codeänderung?"],
+  },
+  "audio-output": {
+    quickCheck: { question: "Warum gehört ein passiver Lautsprecher nicht direkt an einen GPIO?", answer: "GPIO ist ein Logikausgang mit geringer Leistung; ein passiver Lautsprecher benötigt eine geeignete Verstärkerstufe." },
+    thinkDeeper: ["Trenne digitales Medium, D/A-Wandlung, Line-Level, Verstärkung und Lautsprecher. Welche Stufen übernimmt deine Stereoanlage?"],
+  },
+  "spotify-service": {
+    quickCheck: { question: "Warum behandeln wir Spotify als austauschbare Schicht?", answer: "Damit RFID, Mapping und lokale Medienlogik unabhängig vom Cloud-Dienst verstanden und getestet werden können." },
+    thinkDeeper: ["Wie muss die Architektur aussehen, damit Spotify durch lokale Dateien oder einen eigenen Medienserver ersetzt werden kann, ohne Reader- und UID-Logik neu zu schreiben?"],
+    connections: [{ title: "Local-first", text: "Externe Dienste werden zur optionalen Erweiterung statt zur Voraussetzung der Grundfunktion." }],
+  },
+};
+
+export const stepLearning: Record<string, LearningPrompt> = {
+  "system-verstehen": { thinkDeeper: ["Erkläre den vollständigen Informationsfluss ohne die Wörter 'irgendwie' oder nur 'Signal'. Benenne an jeder Grenze konkret, was übertragen wird."] },
+  "pi-vorbereiten": { thinkDeeper: ["Vergleiche Raspberry Pi, alten Laptop, Smartphone und Mikrocontroller anhand von CPU, RAM, Speicher, Betriebssystem, GPIO, Echtzeitverhalten und Energiebedarf."] },
+  "led-grundlagen": { thinkDeeper: ["Leite aus Messwerten und Modellrechnung ab, welche Annahmen der vereinfachten LED-Rechnung realistisch und welche nur Näherungen sind."] },
+  gpio: { thinkDeeper: ["Erkläre kausal, warum eine Softwareänderung die Blinkfrequenz verändert, ohne den elektrischen HIGH-Pegel selbst zu verändern."] },
+  "mfrc522-anschliessen": { thinkDeeper: ["Begründe jede einzelne Verbindung zwischen Pi und MFRC522 funktional. Welche konkrete Funktion fällt aus, wenn du eine Leitung entfernst?"] },
+  "spi-register": { thinkDeeper: ["Erkläre einen Registerzugriff gleichzeitig auf drei Ebenen: Leitungssignale, Bytes und Bedeutung laut Datenblatt."] },
+  "rfid-physik": { thinkDeeper: ["Erkläre, warum Abstand und Orientierung die Kopplung beeinflussen, ohne dich nur auf 'schwächeres Signal' zu berufen."] },
+  "uid-lesen": { thinkDeeper: ["Trenne Rohdaten, Darstellung und anwendungsseitige Identität. Welche Fehler entstehen, wenn diese Ebenen vermischt werden?"] },
+  "uid-zuordnung": { thinkDeeper: ["Entwirf das Mapping so, dass RFID später durch NFC oder Barcode ersetzt werden könnte, ohne die Medienlogik grundlegend umzubauen."] },
+  "audio-spotify": { thinkDeeper: ["Erkläre, welche Teile der Jukebox offline weiterarbeiten und welche bei Internet- oder Dienstausfall betroffen sind."] },
+  integration: {
+    thinkDeeper: ["Erkläre das fertige System vollständig von Energieversorgung über RFID und SPI bis zur Medienausgabe. Eine andere Person soll daraus ein belastbares mentales Modell gewinnen können."],
+    transfer: [
+      "Ersetze den Raspberry Pi gedanklich durch einen alten Laptop. Welche Funktionen bleiben identisch, welche Schnittstellen fehlen und welche zusätzliche Hardware würdest du einsetzen?",
+      "Ersetze den Raspberry Pi gedanklich durch ein Android-Smartphone. Welche Aufgaben kann es selbst übernehmen und wie würdest du den MFRC522 oder einen alternativen Identifikationsweg anbinden?",
+      "Übertrage die Systemlogik auf einen Thermostat: Was entspricht Eingabe, Verarbeitung, Entscheidung und Ausgabe? Wo bricht die Analogie sinnvollerweise zusammen?",
+      "Übertrage das Prinzip auf Robot Car oder Drohne. Welche bereits gelernten Concepts bleiben erhalten und welche neuen Concepts werden zwingend benötigt?",
+    ],
+  },
+};
