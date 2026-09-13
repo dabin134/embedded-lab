@@ -1,29 +1,33 @@
-/* Embedded-Labby — unified green technical palette
-   Research basis: calm sage/eucalyptus surfaces, role-based tokens,
-   one accent family, strong contrast, no white and no brown.
+/* Embedded-Labby — white base, green structure, restrained sand accents
+   Design rule:
+   1) white is the page background
+   2) green carries brand, hierarchy and technical structure
+   3) sand appears only as a warm accent where it helps grouping
+   4) cards stay light and consistent
 */
 
 :root {
+  --el-bg: #ffffff;
   --el-ink: #20382e;
   --el-deep: #2f5546;
   --el-primary: #5f806e;
-  --el-accent: #6f9582;
-  --el-sage: #afc5b5;
-  --el-mint: #cfddd2;
-  --el-surface: #e2ebe4;
-  --el-card: #eaf1ec;
+  --el-green-soft: #dfe8e1;
+  --el-green-soft-2: #eef4f0;
+  --el-card: #f8faf8;
+  --el-sand: #d7c2ad;
+  --el-sand-soft: #f1e8df;
 
-  --el-line: rgba(32, 56, 46, .12);
-  --el-line-strong: rgba(32, 56, 46, .22);
-  --el-shadow: 0 14px 34px rgba(32, 56, 46, .065);
-  --el-shadow-hover: 0 18px 42px rgba(32, 56, 46, .10);
+  --el-line: rgba(32, 56, 46, .11);
+  --el-line-strong: rgba(32, 56, 46, .18);
+  --el-shadow: 0 14px 34px rgba(32, 56, 46, .055);
+  --el-shadow-hover: 0 18px 42px rgba(32, 56, 46, .09);
 }
 
 html,
 body,
 .site-shell,
 main {
-  background: var(--el-surface);
+  background: var(--el-bg);
   color: var(--el-ink);
 }
 
@@ -35,7 +39,7 @@ span { color: inherit; }
 
 /* ---------- Header ---------- */
 .site-header {
-  background: rgba(226, 235, 228, .95);
+  background: rgba(255, 255, 255, .96);
   border-color: var(--el-line);
   box-shadow: var(--el-shadow);
 }
@@ -54,7 +58,7 @@ span { color: inherit; }
   overflow: hidden;
   border: 1px solid var(--el-line);
   border-radius: 13px;
-  background: var(--el-mint);
+  background: var(--el-green-soft-2);
 }
 
 .brand-crest img {
@@ -70,41 +74,37 @@ span { color: inherit; }
   font-weight: 850;
   letter-spacing: .075em;
 }
-
 .brand-wordmark-small b { color: var(--el-primary); }
 
 .main-nav {
-  background: var(--el-mint);
+  background: var(--el-green-soft-2);
   border: 1px solid var(--el-line);
 }
 .main-nav a { color: var(--el-ink); }
-.main-nav a:hover {
-  background: var(--el-sage);
-  color: var(--el-ink);
-}
+.main-nav a:hover { background: var(--el-green-soft); color: var(--el-ink); }
 
 .header-cta,
 .button.primary,
 .soft-button.primary {
   background: var(--el-deep);
-  color: var(--el-surface);
+  color: #fff;
   border-color: var(--el-deep);
 }
 .header-cta:hover,
 .button.primary:hover,
 .soft-button.primary:hover {
   background: var(--el-primary);
-  color: var(--el-surface);
+  color: #fff;
 }
 
 .button.ghost,
 .soft-button.secondary {
-  background: var(--el-card);
-  border-color: var(--el-line-strong);
+  background: #fff;
   color: var(--el-ink);
+  border-color: var(--el-line-strong);
 }
 
-/* ---------- Global surfaces ---------- */
+/* ---------- Global hierarchy ---------- */
 .section-kicker,
 .soft-eyebrow,
 .eyebrow { color: var(--el-deep); }
@@ -113,7 +113,7 @@ span { color: inherit; }
 .concept-hero,
 .component-hero,
 .project-hero {
-  background: var(--el-mint);
+  background: #fff;
   border-color: var(--el-line);
 }
 
@@ -157,9 +157,9 @@ span { color: inherit; }
 .reference-links a,
 .transfer-chips span,
 .concept-prereqs a {
-  background: var(--el-sage);
+  background: var(--el-sand-soft);
   color: var(--el-ink);
-  border-color: var(--el-line);
+  border-color: rgba(116, 91, 68, .12);
 }
 
 /* ---------- Homepage ---------- */
@@ -167,19 +167,24 @@ span { color: inherit; }
 .hero-project-card,
 .hero-concept-card,
 .hero-note-card {
-  background: var(--el-card);
+  background: #fff;
   border-color: var(--el-line);
 }
 
-.hero-project-card { background: var(--el-mint); }
-.hero-concept-card { background: var(--el-sage); }
-.hero-note-card { background: var(--el-mint); }
+.hero-project-card {
+  background: var(--el-green-soft-2);
+}
+
+.hero-concept-card,
+.hero-note-card {
+  background: var(--el-sand-soft);
+}
 
 .hero-lab-card,
 .lab-shell,
 .dark-section {
   background: var(--el-deep);
-  color: var(--el-surface);
+  color: #fff;
 }
 .hero-lab-card *,
 .lab-shell *,
@@ -187,63 +192,69 @@ span { color: inherit; }
 
 .orbit-core {
   background: var(--el-deep);
-  color: var(--el-surface);
+  color: #fff;
 }
 .orbit-chip,
 .orbit-node {
-  background: var(--el-sage);
+  background: #fff;
   color: var(--el-ink);
 }
 
 .brand-mission-strip {
-  background: var(--el-sage);
-  border-color: var(--el-line);
+  background: var(--el-sand-soft);
+  border-color: rgba(116, 91, 68, .12);
 }
 .brand-mission-emblem {
-  background: var(--el-card);
+  background: #fff;
   border-color: var(--el-line);
 }
 .brand-signature-name { color: var(--el-ink); }
 .brand-signature-name b { color: var(--el-primary); }
 .brand-signature-tagline { color: var(--el-deep); }
-.brand-signature-tagline i { background: var(--el-primary); }
-.brand-signature-tagline b { color: var(--el-primary); }
+.brand-signature-tagline i,
+.brand-signature-tagline b { background-color: var(--el-primary); color: var(--el-primary); }
 
 .soft-section {
   border: 1px solid var(--el-line);
   box-shadow: var(--el-shadow);
 }
+
+/* Consistent rhythm: green sections for structure, sand only for warm/reflective moments. */
 .learning-section,
-.project-section-soft { background: var(--el-mint); }
-.lab-section-soft { background: var(--el-sage); }
+.project-section-soft {
+  background: var(--el-green-soft-2);
+}
+.lab-section-soft {
+  background: var(--el-sand-soft);
+}
 
 .soft-path-card,
 .soft-path-card.path-build,
 .soft-path-card.path-understand,
 .soft-path-card.path-lab,
 .soft-path-card.path-recall {
-  background: var(--el-card);
+  background: #fff;
   border: 1px solid var(--el-line);
   box-shadow: var(--el-shadow);
 }
 .soft-path-card:hover {
-  background: var(--el-mint);
   border-color: var(--el-line-strong);
   box-shadow: var(--el-shadow-hover);
 }
 
 .project-editorial-card {
-  background: var(--el-card);
+  background: #fff;
   border: 1px solid var(--el-line);
 }
 .project-editorial-list > a:nth-child(n) { background: transparent; }
-.project-editorial-list > a:hover { background: var(--el-mint); }
+.project-editorial-list > a:hover { background: var(--el-green-soft-2); }
 
-/* ---------- RFID Project ---------- */
+/* ---------- RFID project ---------- */
 .rfid-project-page {
-  background: var(--el-surface);
+  background: #fff;
   color: var(--el-ink);
 }
+
 .rfid-project-page h1,
 .rfid-project-page h2,
 .rfid-project-page h3,
@@ -251,20 +262,8 @@ span { color: inherit; }
 .rfid-project-page small,
 .rfid-project-page span { color: var(--el-ink); }
 
-.rfid-project-page .project-hero,
-.rfid-project-page .project-system-flow,
-.rfid-project-page .project-equipment,
-.rfid-project-page .project-goals,
-.rfid-project-page .project-transfer {
-  background: var(--el-mint);
-  border-color: var(--el-line);
-}
-
-.rfid-project-page .project-foundation,
-.rfid-project-page .learning-architecture,
-.rfid-project-page .roadmap-section,
-.rfid-project-page .project-reference {
-  background: var(--el-sage);
+.rfid-project-page .project-hero {
+  background: #fff;
   border-color: var(--el-line);
 }
 
@@ -282,17 +281,33 @@ span { color: inherit; }
   box-shadow: var(--el-shadow);
 }
 
+.rfid-project-page .project-system-flow,
+.rfid-project-page .project-equipment,
+.rfid-project-page .project-goals,
+.rfid-project-page .roadmap-section {
+  background: var(--el-green-soft-2);
+  border-color: var(--el-line);
+}
+
+.rfid-project-page .project-foundation,
+.rfid-project-page .learning-architecture,
+.rfid-project-page .project-transfer,
+.rfid-project-page .project-reference {
+  background: var(--el-sand-soft);
+  border-color: rgba(116, 91, 68, .11);
+}
+
 .rfid-project-page .flow-card-top > span,
 .rfid-project-page .goal-list > article > span,
 .rfid-project-page .roadmap-rail > span,
 .rfid-project-page .system-flow-grid article > i {
   background: var(--el-deep);
-  color: var(--el-surface);
+  color: #fff;
 }
 
 .rfid-project-page .equipment-card-top small,
 .rfid-project-page .reference-links a {
-  background: var(--el-sage);
+  background: var(--el-sand-soft);
   color: var(--el-ink);
 }
 
@@ -311,10 +326,10 @@ span { color: inherit; }
   color: var(--el-ink);
 }
 
-.component-detail-grid > article:nth-child(n),
-.foundation-grid > article:nth-child(n),
-.learning-card:nth-child(n),
-.connection-grid article:nth-child(n),
+.component-detail-grid > article,
+.foundation-grid > article,
+.learning-card,
+.connection-grid article,
 .relation-cards a,
 .relation-grid a,
 .source-list a {
@@ -323,52 +338,33 @@ span { color: inherit; }
 }
 
 .quick-check-card,
-.think-deeper-card,
 .predict-card,
-.tutor-note,
 .lesson-deliverable,
 .step-outcome,
 .component-role,
 .callout {
-  background: var(--el-mint);
+  background: var(--el-green-soft-2);
   color: var(--el-ink);
   border-color: var(--el-line);
 }
 
-/* ---------- Technical lesson surfaces ---------- */
-.lesson-content,
-.lesson-block,
-.lesson-sidebar {
+.think-deeper-card,
+.tutor-note,
+.warning-list li {
+  background: var(--el-sand-soft);
   color: var(--el-ink);
-}
-.lesson-block {
-  border-color: var(--el-line);
-}
-.lesson-list li,
-.lab-columns > div,
-.code-panel,
-.pin-table > div {
-  border-color: var(--el-line);
-}
-.lesson-list li,
-.lab-columns > div,
-.pin-table > div {
-  background: var(--el-card);
+  border-color: rgba(116, 91, 68, .11);
 }
 
 /* ---------- Accent discipline ---------- */
-a,
-button,
-summary { accent-color: var(--el-deep); }
-
 ::selection {
-  background: var(--el-sage);
+  background: var(--el-green-soft);
   color: var(--el-ink);
 }
 
 .site-footer {
-  background: var(--el-sage);
-  border-color: var(--el-line);
+  background: var(--el-sand-soft);
+  border-color: rgba(116, 91, 68, .11);
   color: var(--el-ink);
 }
 
