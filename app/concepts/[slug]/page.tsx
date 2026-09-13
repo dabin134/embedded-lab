@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { conceptById, concepts, rfidSteps } from "@/lib/data";
+import { conceptLearning } from "@/lib/rfid-code";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -13,6 +14,7 @@ export default async function ConceptPage({ params }: { params: Promise<{ slug: 
   if (!concept) notFound();
 
   const projectSteps = rfidSteps.filter((step) => step.concepts.includes(concept.id));
+  const learning = conceptLearning[concept.id];
 
   return (
     <>
@@ -43,6 +45,33 @@ export default async function ConceptPage({ params }: { params: Promise<{ slug: 
         </div>
       </section>
 
+      {learning && (learning.quickCheck || learning.thinkDeeper?.length) && (
+        <section className="section-pad learning-section">
+          <div className="section-heading learning-heading">
+            <div><div className="section-kicker">Learning check</div><h2>Verstanden – oder nur gelesen?</h2></div>
+            <p>Der Quick Check prüft einen Kernpunkt. Think Deeper verlangt eine eigene, fachlich präzise Erklärung und eignet sich später für den LLM-Tutor.</p>
+          </div>
+          <div className="learning-grid">
+            {learning.quickCheck && (
+              <article className="learning-card quick-check-card">
+                <div className="learning-label"><span>01</span> Quick Check</div>
+                <h3>{learning.quickCheck.question}</h3>
+                <details><summary>Lösung prüfen</summary><p>{learning.quickCheck.answer}</p></details>
+              </article>
+            )}
+            {learning.thinkDeeper && (
+              <article className="learning-card think-deeper-card">
+                <div className="learning-label"><span>02</span> Think Deeper</div>
+                <div className="deep-question-list">
+                  {learning.thinkDeeper.map((question, index) => <div key={question}><span>{String(index + 1).padStart(2, "0")}</span><p>{question}</p></div>)}
+                </div>
+                <div className="tutor-note"><span>Für den Tutor</span><p>Nicht nur die Endantwort nennen: Begrifflichkeiten, Kausalzusammenhänge und Systemgrenzen vollständig erklären.</p></div>
+              </article>
+            )}
+          </div>
+        </section>
+      )}
+
       <section className="section-pad relation-section">
         <div className="section-heading">
           <div><div className="section-kicker">Im Projekt</div><h2>Wo dieses Concept praktisch gebraucht wird.</h2></div>
@@ -60,10 +89,18 @@ export default async function ConceptPage({ params }: { params: Promise<{ slug: 
         </div>
       </section>
 
-      <section className="section-pad concept-transfer">
-        <div className="section-kicker">Transfer</div>
-        <h2>Dieses Wissen endet nicht beim RFID-Musikplayer.</h2>
-        <div className="transfer-chips">{concept.transfer.map((item) => <span key={item}>{item}</span>)}</div>
+      <section className="section-pad connections-section">
+        <div className="section-heading learning-heading">
+          <div><div className="section-kicker">Connections</div><h2>Wo dasselbe Prinzip wieder auftaucht.</h2></div>
+          <p>Connections sind noch keine Transferprüfung. Sie zeigen dir, wie ein allgemeines Concept in anderen technischen Systemen wiederkehrt.</p>
+        </div>
+        {learning?.connections && learning.connections.length > 0 ? (
+          <div className="connection-grid">
+            {learning.connections.map((connection) => <article key={connection.title}><span>↗ Verbindung</span><h3>{connection.title}</h3><p>{connection.text}</p></article>)}
+          </div>
+        ) : (
+          <div className="transfer-chips">{concept.transfer.map((item) => <span key={item}>{item}</span>)}</div>
+        )}
       </section>
 
       {concept.sources.length > 0 && (
