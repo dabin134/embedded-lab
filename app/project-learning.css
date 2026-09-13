@@ -142,7 +142,12 @@
 .component-project-use,
 .component-cautions,
 .component-sources,
-.principle-section { border-top: 1px solid rgba(16, 32, 25, .07); }
+.principle-section,
+.learning-section,
+.component-learning,
+.connections-section,
+.learning-architecture,
+.project-transfer { border-top: 1px solid rgba(16, 32, 25, .07); }
 
 .foundation-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 30px; }
 .foundation-grid article span {
@@ -223,11 +228,105 @@
 .component-project-use > p { max-width: 850px; color: #56665d; line-height: 1.75; }
 .component-callout { margin-top: 20px; }
 
+.learning-heading { align-items: end; }
+.learning-grid {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: minmax(0, .78fr) minmax(0, 1.22fr);
+  gap: 18px;
+}
+.learning-card {
+  border: 1px solid rgba(16, 32, 25, .10);
+  border-radius: 20px;
+  padding: clamp(20px, 3vw, 28px);
+  background: #f7f3ea;
+}
+.learning-label {
+  color: #5d7165;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.learning-label span { margin-right: 8px; color: #94a198; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.learning-card h3 { margin: 16px 0 0; color: #183127; font-size: clamp(18px, 2vw, 24px); line-height: 1.4; }
+.quick-check-card { background: #eef0e8; }
+.quick-check-card details { margin-top: 22px; border-top: 1px solid rgba(16, 32, 25, .12); padding-top: 14px; }
+.quick-check-card summary { cursor: pointer; color: #315441; font-size: 12px; font-weight: 800; }
+.quick-check-card details p { margin: 12px 0 0; color: #43564b; font-size: 14px; line-height: 1.7; }
+.think-deeper-card { background: #f2ece2; }
+.deep-question-list { margin-top: 14px; display: grid; }
+.deep-question-list > div {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(16, 32, 25, .09);
+}
+.deep-question-list > div:last-child { border-bottom: 0; }
+.deep-question-list span { color: #77877e; font: 700 10px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.deep-question-list p { margin: 0; color: #33483d; font-size: 14px; line-height: 1.7; }
+.tutor-note {
+  margin-top: 18px;
+  padding: 13px 15px;
+  border-left: 3px solid #5d7566;
+  background: rgba(231, 236, 229, .72);
+  border-radius: 0 12px 12px 0;
+}
+.tutor-note span { color: #5d7165; font-size: 9px; font-weight: 850; letter-spacing: .09em; text-transform: uppercase; }
+.tutor-note p { margin: 5px 0 0; color: #44574c; font-size: 12px; line-height: 1.6; }
+
+.component-connections { margin-top: 34px; }
+.connection-grid,
+.learning-mode-grid {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.connection-grid article,
+.learning-mode-grid article {
+  border: 1px solid rgba(16, 32, 25, .09);
+  border-radius: 16px;
+  padding: 20px;
+  background: #f5f1e8;
+}
+.connection-grid article > span,
+.learning-mode-grid article > span {
+  color: #668071;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+.connection-grid h3,
+.learning-mode-grid h3 { margin: 12px 0 0; color: #183127; font-size: 18px; }
+.connection-grid p,
+.learning-mode-grid p { margin: 8px 0 0; color: #5b6b62; font-size: 13px; line-height: 1.65; }
+.learning-mode-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.transfer-question-list { margin-top: 28px; display: grid; gap: 10px; }
+.transfer-question-list article {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 14px;
+  align-items: start;
+  padding: 18px 20px;
+  border: 1px solid rgba(16, 32, 25, .10);
+  border-radius: 14px;
+  background: #eef0e8;
+}
+.transfer-question-list span { color: #688073; font: 800 10px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.transfer-question-list p { margin: 0; color: #294236; font-size: 15px; line-height: 1.7; }
+
 @media (max-width: 900px) {
   .foundation-grid { grid-template-columns: 1fr; }
   .lab-columns,
   .component-detail-grid,
-  .reference-card { grid-template-columns: 1fr; }
+  .reference-card,
+  .learning-grid { grid-template-columns: 1fr; }
+  .connection-grid,
+  .learning-mode-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .source-list a { grid-template-columns: 1fr auto; }
   .source-list a span { grid-column: 1 / -1; grid-row: 2; }
 }
@@ -237,4 +336,7 @@
   .goal-list > div { grid-template-columns: 34px 1fr; gap: 10px; }
   .question-stack > div { grid-template-columns: 24px 1fr; padding-inline: 6px; }
   .lesson-list li { padding-right: 10px; }
+  .connection-grid,
+  .learning-mode-grid { grid-template-columns: 1fr; }
+  .transfer-question-list article { grid-template-columns: 28px 1fr; padding: 15px 14px; }
 }
