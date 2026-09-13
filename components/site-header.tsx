@@ -8,12 +8,16 @@ const nav = [
   ["Wissen", "/knowledge"],
 ] as const;
 
+const publicBase = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export function SiteHeader() {
   return (
     <header className="site-header">
-      <Link className="brand" href="/" aria-label="Embedded Lab Startseite">
-        <span className="brand-mark" aria-hidden="true"><i /><i /><i /></span>
-        <span>EMBEDDED <b>LAB</b></span>
+      <Link className="brand brand-with-crest" href="/" aria-label="Embedded Lab Startseite">
+        <span className="brand-crest" aria-hidden="true">
+          <img src={`${publicBase}/embedded-labby-crest.svg`} alt="" />
+        </span>
+        <span className="brand-wordmark-small">EMBEDDED <b>LAB</b></span>
       </Link>
       <nav className="main-nav" aria-label="Hauptnavigation">
         {nav.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}
