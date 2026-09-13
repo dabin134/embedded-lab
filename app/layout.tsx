@@ -5,6 +5,7 @@ import "./palette-polish.css";
 import "./readability-brand.css";
 import "./project-learning.css";
 import "./code-learning.css";
+import "./rfid-color-pass.css";
 import { SiteHeader } from "@/components/site-header";
 
 export const metadata: Metadata = {
