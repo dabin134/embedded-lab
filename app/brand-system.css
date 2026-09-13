@@ -1,54 +1,43 @@
-/* Embedded-Labby — strict five-color system
-   One role per color. No decorative color cycling.
-
-   1. --brand-main   dark green: text, buttons, numbers, strong accents
-   2. --brand-sage   light green: technical / structural section surfaces
-   3. --brand-warm   warm sand: explanatory / reflective section surfaces
-   4. --brand-paper  neutral non-white paper: page + card surface
-   5. --brand-accent warm terracotta: restrained emphasis only
+/* Embedded-Labby — unified green technical palette
+   Research basis: calm sage/eucalyptus surfaces, role-based tokens,
+   one accent family, strong contrast, no white and no brown.
 */
 
 :root {
-  --brand-main: #314d3f;
-  --brand-sage: #a0ac9c;
-  --brand-paper: #e6dad0;
-  --brand-warm: #d4b498;
-  --brand-accent: #c28e62;
+  --el-ink: #20382e;
+  --el-deep: #2f5546;
+  --el-primary: #5f806e;
+  --el-accent: #6f9582;
+  --el-sage: #afc5b5;
+  --el-mint: #cfddd2;
+  --el-surface: #e2ebe4;
+  --el-card: #eaf1ec;
 
-  --brand-main-06: rgba(49, 77, 63, .06);
-  --brand-main-10: rgba(49, 77, 63, .10);
-  --brand-main-16: rgba(49, 77, 63, .16);
-  --brand-main-24: rgba(49, 77, 63, .24);
-  --brand-sage-42: rgba(160, 172, 156, .42);
-  --brand-paper-76: rgba(230, 218, 208, .76);
-  --brand-paper-92: rgba(230, 218, 208, .92);
-  --brand-warm-42: rgba(212, 180, 152, .42);
-  --brand-accent-20: rgba(194, 142, 98, .20);
-
-  --brand-line: 1px solid var(--brand-main-10);
-  --brand-shadow: 0 14px 34px rgba(49, 77, 63, .06);
-  --brand-shadow-hover: 0 18px 40px rgba(49, 77, 63, .10);
+  --el-line: rgba(32, 56, 46, .12);
+  --el-line-strong: rgba(32, 56, 46, .22);
+  --el-shadow: 0 14px 34px rgba(32, 56, 46, .065);
+  --el-shadow-hover: 0 18px 42px rgba(32, 56, 46, .10);
 }
 
 html,
-body {
-  background: var(--brand-paper);
-  color: var(--brand-main);
+body,
+.site-shell,
+main {
+  background: var(--el-surface);
+  color: var(--el-ink);
 }
 
 body,
 p,
 li,
 small,
-span {
-  color: inherit;
-}
+span { color: inherit; }
 
-/* -------------------- Header -------------------- */
+/* ---------- Header ---------- */
 .site-header {
-  background: var(--brand-paper-92);
-  border-color: var(--brand-main-10);
-  box-shadow: var(--brand-shadow);
+  background: rgba(226, 235, 228, .95);
+  border-color: var(--el-line);
+  box-shadow: var(--el-shadow);
 }
 
 .brand-with-crest {
@@ -63,9 +52,9 @@ span {
   display: grid;
   place-items: center;
   overflow: hidden;
-  border: var(--brand-line);
+  border: 1px solid var(--el-line);
   border-radius: 13px;
-  background: var(--brand-sage);
+  background: var(--el-mint);
 }
 
 .brand-crest img {
@@ -76,57 +65,56 @@ span {
 }
 
 .brand-wordmark-small {
-  color: var(--brand-main);
+  color: var(--el-ink);
   font-size: 13px;
   font-weight: 850;
   letter-spacing: .075em;
 }
 
-.brand-wordmark-small b { color: var(--brand-accent); }
+.brand-wordmark-small b { color: var(--el-primary); }
 
 .main-nav {
-  background: var(--brand-sage-42);
-  border: var(--brand-line);
+  background: var(--el-mint);
+  border: 1px solid var(--el-line);
 }
-
-.main-nav a { color: var(--brand-main); }
-.main-nav a:hover { background: var(--brand-paper); color: var(--brand-main); }
+.main-nav a { color: var(--el-ink); }
+.main-nav a:hover {
+  background: var(--el-sage);
+  color: var(--el-ink);
+}
 
 .header-cta,
 .button.primary,
 .soft-button.primary {
-  background: var(--brand-main);
-  color: var(--brand-paper);
-  border-color: var(--brand-main);
+  background: var(--el-deep);
+  color: var(--el-surface);
+  border-color: var(--el-deep);
 }
-
 .header-cta:hover,
 .button.primary:hover,
 .soft-button.primary:hover {
-  background: var(--brand-accent);
-  color: var(--brand-main);
+  background: var(--el-primary);
+  color: var(--el-surface);
 }
 
 .button.ghost,
 .soft-button.secondary {
-  background: var(--brand-paper);
-  border-color: var(--brand-main-16);
-  color: var(--brand-main);
+  background: var(--el-card);
+  border-color: var(--el-line-strong);
+  color: var(--el-ink);
 }
 
-/* -------------------- Global hierarchy -------------------- */
+/* ---------- Global surfaces ---------- */
 .section-kicker,
 .soft-eyebrow,
-.eyebrow {
-  color: var(--brand-main);
-}
+.eyebrow { color: var(--el-deep); }
 
 .page-top,
 .concept-hero,
 .component-hero,
 .project-hero {
-  background: var(--brand-sage);
-  border-color: var(--brand-main-10);
+  background: var(--el-mint);
+  border-color: var(--el-line);
 }
 
 .project-list-card,
@@ -143,11 +131,12 @@ span {
 .reference-card,
 .component-function-card,
 .concept-question-card,
-.principle-card {
-  background: var(--brand-paper);
-  border-color: var(--brand-main-10);
-  box-shadow: var(--brand-shadow);
-  color: var(--brand-main);
+.principle-card,
+.source-list a {
+  background: var(--el-card);
+  border-color: var(--el-line);
+  box-shadow: var(--el-shadow);
+  color: var(--el-ink);
 }
 
 .project-list-card:hover,
@@ -155,9 +144,10 @@ span {
 .component-card:hover,
 .relation-cards a:hover,
 .relation-grid a:hover,
-.roadmap-card:hover {
-  border-color: var(--brand-main-24);
-  box-shadow: var(--brand-shadow-hover);
+.roadmap-card:hover,
+.source-list a:hover {
+  border-color: var(--el-line-strong);
+  box-shadow: var(--el-shadow-hover);
 }
 
 .badge,
@@ -167,132 +157,115 @@ span {
 .reference-links a,
 .transfer-chips span,
 .concept-prereqs a {
-  background: var(--brand-sage);
-  color: var(--brand-main);
-  border-color: var(--brand-main-10);
+  background: var(--el-sage);
+  color: var(--el-ink);
+  border-color: var(--el-line);
 }
 
-/* No card-by-card color roulette. Cards use one paper surface. */
-.project-list-card:nth-child(n),
-.library-card:nth-child(n),
-.component-card:nth-child(n),
-.component-detail-grid > article:nth-child(n),
-.foundation-grid > article:nth-child(n),
-.learning-card:nth-child(n),
-.connection-grid article:nth-child(n) {
-  background: var(--brand-paper);
-}
-
-/* -------------------- Homepage -------------------- */
+/* ---------- Homepage ---------- */
 .hero-story-card,
 .hero-project-card,
 .hero-concept-card,
 .hero-note-card {
-  background: var(--brand-paper);
-  border-color: var(--brand-main-10);
+  background: var(--el-card);
+  border-color: var(--el-line);
 }
+
+.hero-project-card { background: var(--el-mint); }
+.hero-concept-card { background: var(--el-sage); }
+.hero-note-card { background: var(--el-mint); }
 
 .hero-lab-card,
 .lab-shell,
 .dark-section {
-  background: var(--brand-main);
-  color: var(--brand-paper);
+  background: var(--el-deep);
+  color: var(--el-surface);
 }
-
 .hero-lab-card *,
 .lab-shell *,
-.dark-section * {
-  color: inherit;
-}
+.dark-section * { color: inherit; }
 
 .orbit-core {
-  background: var(--brand-main);
-  color: var(--brand-paper);
+  background: var(--el-deep);
+  color: var(--el-surface);
 }
-
 .orbit-chip,
 .orbit-node {
-  background: var(--brand-warm);
-  color: var(--brand-main);
+  background: var(--el-sage);
+  color: var(--el-ink);
 }
 
 .brand-mission-strip {
-  background: var(--brand-warm);
-  border-color: var(--brand-main-10);
+  background: var(--el-sage);
+  border-color: var(--el-line);
 }
-
 .brand-mission-emblem {
-  background: var(--brand-paper);
-  border-color: var(--brand-main-10);
+  background: var(--el-card);
+  border-color: var(--el-line);
 }
-
-.brand-signature-name { color: var(--brand-main); }
-.brand-signature-name b { color: var(--brand-accent); }
-.brand-signature-tagline { color: var(--brand-main); }
-.brand-signature-tagline i,
-.brand-signature-tagline b { background-color: var(--brand-accent); color: var(--brand-accent); }
+.brand-signature-name { color: var(--el-ink); }
+.brand-signature-name b { color: var(--el-primary); }
+.brand-signature-tagline { color: var(--el-deep); }
+.brand-signature-tagline i { background: var(--el-primary); }
+.brand-signature-tagline b { color: var(--el-primary); }
 
 .soft-section {
-  border: var(--brand-line);
-  box-shadow: var(--brand-shadow);
+  border: 1px solid var(--el-line);
+  box-shadow: var(--el-shadow);
 }
-
-/* Section roles repeat consistently: green → warm → green. */
 .learning-section,
-.project-section-soft {
-  background: var(--brand-sage);
-}
-
-.lab-section-soft {
-  background: var(--brand-warm);
-}
+.project-section-soft { background: var(--el-mint); }
+.lab-section-soft { background: var(--el-sage); }
 
 .soft-path-card,
 .soft-path-card.path-build,
 .soft-path-card.path-understand,
 .soft-path-card.path-lab,
 .soft-path-card.path-recall {
-  background: var(--brand-paper);
-  border: var(--brand-line);
-  box-shadow: var(--brand-shadow);
+  background: var(--el-card);
+  border: 1px solid var(--el-line);
+  box-shadow: var(--el-shadow);
 }
-
 .soft-path-card:hover {
-  border-color: var(--brand-main-24);
-  box-shadow: var(--brand-shadow-hover);
+  background: var(--el-mint);
+  border-color: var(--el-line-strong);
+  box-shadow: var(--el-shadow-hover);
 }
 
 .project-editorial-card {
-  background: var(--brand-paper);
-  border: var(--brand-line);
+  background: var(--el-card);
+  border: 1px solid var(--el-line);
 }
+.project-editorial-list > a:nth-child(n) { background: transparent; }
+.project-editorial-list > a:hover { background: var(--el-mint); }
 
-.project-editorial-list > a:nth-child(n) {
-  background: transparent;
-}
-
-.project-editorial-list > a:hover {
-  background: var(--brand-sage-42);
-}
-
-/* -------------------- RFID project -------------------- */
+/* ---------- RFID Project ---------- */
 .rfid-project-page {
-  background: var(--brand-paper);
-  color: var(--brand-main);
+  background: var(--el-surface);
+  color: var(--el-ink);
 }
-
 .rfid-project-page h1,
 .rfid-project-page h2,
 .rfid-project-page h3,
 .rfid-project-page p,
 .rfid-project-page small,
-.rfid-project-page span {
-  color: var(--brand-main);
+.rfid-project-page span { color: var(--el-ink); }
+
+.rfid-project-page .project-hero,
+.rfid-project-page .project-system-flow,
+.rfid-project-page .project-equipment,
+.rfid-project-page .project-goals,
+.rfid-project-page .project-transfer {
+  background: var(--el-mint);
+  border-color: var(--el-line);
 }
 
-.rfid-project-page .project-hero {
-  background: var(--brand-sage);
-  border-color: var(--brand-main-10);
+.rfid-project-page .project-foundation,
+.rfid-project-page .learning-architecture,
+.rfid-project-page .roadmap-section,
+.rfid-project-page .project-reference {
+  background: var(--el-sage);
+  border-color: var(--el-line);
 }
 
 .rfid-project-page .project-spec > div:nth-child(n),
@@ -304,46 +277,26 @@ span {
 .rfid-project-page .roadmap-step:nth-child(n) .roadmap-card,
 .rfid-project-page .transfer-question-list article:nth-child(n),
 .rfid-project-page .reference-card {
-  background: var(--brand-paper);
-  border-color: var(--brand-main-10);
-  box-shadow: var(--brand-shadow);
-}
-
-.rfid-project-page .project-system-flow,
-.rfid-project-page .project-equipment,
-.rfid-project-page .project-goals,
-.rfid-project-page .project-transfer {
-  background: var(--brand-sage);
-  border-color: var(--brand-main-10);
-}
-
-.rfid-project-page .project-foundation,
-.rfid-project-page .learning-architecture,
-.rfid-project-page .roadmap-section,
-.rfid-project-page .project-reference {
-  background: var(--brand-warm);
-  border-color: var(--brand-main-10);
+  background: var(--el-card);
+  border-color: var(--el-line);
+  box-shadow: var(--el-shadow);
 }
 
 .rfid-project-page .flow-card-top > span,
 .rfid-project-page .goal-list > article > span,
-.rfid-project-page .roadmap-rail > span {
-  background: var(--brand-main);
-  color: var(--brand-paper);
-}
-
+.rfid-project-page .roadmap-rail > span,
 .rfid-project-page .system-flow-grid article > i {
-  background: var(--brand-main);
-  color: var(--brand-paper);
+  background: var(--el-deep);
+  color: var(--el-surface);
 }
 
 .rfid-project-page .equipment-card-top small,
 .rfid-project-page .reference-links a {
-  background: var(--brand-warm);
-  color: var(--brand-main);
+  background: var(--el-sage);
+  color: var(--el-ink);
 }
 
-/* -------------------- Concepts / Components / learning -------------------- */
+/* ---------- Concepts / Components / learning ---------- */
 .component-detail-grid,
 .concept-body,
 .component-project-use,
@@ -355,53 +308,68 @@ span {
 .component-sources,
 .concept-sources,
 .principle-section {
-  color: var(--brand-main);
+  color: var(--el-ink);
 }
 
-.component-detail-grid > article,
-.foundation-grid > article,
-.learning-card,
-.connection-grid article,
+.component-detail-grid > article:nth-child(n),
+.foundation-grid > article:nth-child(n),
+.learning-card:nth-child(n),
+.connection-grid article:nth-child(n),
 .relation-cards a,
 .relation-grid a,
 .source-list a {
-  background: var(--brand-paper);
-  border-color: var(--brand-main-10);
+  background: var(--el-card);
+  border-color: var(--el-line);
 }
 
 .quick-check-card,
 .think-deeper-card,
 .predict-card,
-.tutor-note {
-  background: var(--brand-warm);
-  color: var(--brand-main);
-}
-
+.tutor-note,
 .lesson-deliverable,
 .step-outcome,
 .component-role,
 .callout {
-  background: var(--brand-sage);
-  color: var(--brand-main);
-  border-color: var(--brand-main-10);
+  background: var(--el-mint);
+  color: var(--el-ink);
+  border-color: var(--el-line);
 }
 
-/* -------------------- Accent discipline -------------------- */
+/* ---------- Technical lesson surfaces ---------- */
+.lesson-content,
+.lesson-block,
+.lesson-sidebar {
+  color: var(--el-ink);
+}
+.lesson-block {
+  border-color: var(--el-line);
+}
+.lesson-list li,
+.lab-columns > div,
+.code-panel,
+.pin-table > div {
+  border-color: var(--el-line);
+}
+.lesson-list li,
+.lab-columns > div,
+.pin-table > div {
+  background: var(--el-card);
+}
+
+/* ---------- Accent discipline ---------- */
 a,
 button,
-summary {
-  accent-color: var(--brand-main);
-}
+summary { accent-color: var(--el-deep); }
 
 ::selection {
-  background: var(--brand-accent-20);
-  color: var(--brand-main);
+  background: var(--el-sage);
+  color: var(--el-ink);
 }
 
 .site-footer {
-  background: var(--brand-warm);
-  border-color: var(--brand-main-10);
-  color: var(--brand-main);
+  background: var(--el-sage);
+  border-color: var(--el-line);
+  color: var(--el-ink);
 }
 
 @media (max-width: 820px) {
@@ -410,12 +378,10 @@ summary {
     height: 40px;
     flex-basis: 40px;
   }
-
   .brand-crest img {
     width: 38px;
     height: 38px;
   }
-
   .brand-signature-tagline {
     font-size: 8px;
     letter-spacing: .12em;
