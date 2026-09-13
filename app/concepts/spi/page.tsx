@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { SpiSignalDemo } from "@/components/spi-signal-demo";
+import { conceptLearning } from "@/lib/rfid-code";
 
 export default function SpiPage() {
+  const learning = conceptLearning.spi;
   return (
     <>
       <section className="concept-hero section-pad">
@@ -35,6 +37,14 @@ export default function SpiPage() {
         </div>
       </section>
 
+      <section className="section-pad learning-section">
+        <div className="section-heading learning-heading"><div><div className="section-kicker">Learning check</div><h2>Verstanden – oder nur gelesen?</h2></div><p>Quick Check kontrolliert den Kern. Think Deeper verlangt eine eigene technische Erklärung.</p></div>
+        <div className="learning-grid">
+          <article className="learning-card quick-check-card"><div className="learning-label"><span>01</span> Quick Check</div><h3>{learning.quickCheck?.question}</h3><details><summary>Lösung prüfen</summary><p>{learning.quickCheck?.answer}</p></details></article>
+          <article className="learning-card think-deeper-card"><div className="learning-label"><span>02</span> Think Deeper</div><div className="deep-question-list">{learning.thinkDeeper?.map((question, index) => <div key={question}><span>{String(index + 1).padStart(2, "0")}</span><p>{question}</p></div>)}</div></article>
+        </div>
+      </section>
+
       <section className="section-pad relation-section">
         <div className="section-kicker">Im Wissensnetz</div>
         <h2>Wo du SPI direkt benutzt</h2>
@@ -44,6 +54,8 @@ export default function SpiPage() {
           <Link href="/projects/rfid-music-player/steps/spi-register"><span>Project step 06</span><b>SPI, Bits & Register</b><p>Den Transfer unterhalb der Bibliothek verstehen</p><i>→</i></Link>
         </div>
       </section>
+
+      {learning.connections && <section className="section-pad connections-section"><div className="section-heading learning-heading"><div><div className="section-kicker">Connections</div><h2>Wo SPI wieder auftaucht.</h2></div><p>Dasselbe Kommunikationsprinzip, andere Geräte und andere Byte-Bedeutungen.</p></div><div className="connection-grid">{learning.connections.map((connection) => <article key={connection.title}><span>↗ Verbindung</span><h3>{connection.title}</h3><p>{connection.text}</p></article>)}</div></section>}
 
       <section className="section-pad concept-sources">
         <div className="section-kicker">Quellen</div>
