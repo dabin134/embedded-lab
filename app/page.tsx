@@ -123,8 +123,12 @@ export default function Home() {
       </section>
 
       <section className="brand-mission-strip" aria-labelledby="mission-heading">
-        <div className="brand-mission-mark">
-          <img src={`${publicBase}/embedded-labby-logo.webp`} alt="Embedded-Labby Wappen mit Adler, offenem Buch und dem Leitmotiv Ideas · Systems · Real World" />
+        <div className="brand-mission-mark brand-mission-emblem">
+          <img src={`${publicBase}/embedded-labby-crest.svg`} alt="Embedded-Labby Wappen mit Adler, offenem Buch, Pfeil und Lorbeerkranz" />
+          <div className="brand-signature" aria-label="Embedded-Labby · Ideas · Systems · Real World">
+            <div className="brand-signature-name"><span>Embedded-</span><b>Labby</b></div>
+            <div className="brand-signature-tagline"><i /> IDEAS <b>•</b> SYSTEMS <b>•</b> REAL WORLD <i /></div>
+          </div>
         </div>
         <div className="brand-mission-copy">
           <div className="soft-eyebrow"><span /> Leitbild</div>
