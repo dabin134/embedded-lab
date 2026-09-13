@@ -1,43 +1,54 @@
-/* Embedded-Labby brand system
-   Palette inspired by the supplied Pantone reference:
-   Wren · Cloud Dancer · Bone White · Mountain View · Olive Night · Pelican
+/* Embedded-Labby — strict five-color system
+   One role per color. No decorative color cycling.
+
+   1. --brand-main   dark green: text, buttons, numbers, strong accents
+   2. --brand-sage   light green: technical / structural section surfaces
+   3. --brand-warm   warm sand: explanatory / reflective section surfaces
+   4. --brand-paper  neutral non-white paper: page + card surface
+   5. --brand-accent warm terracotta: restrained emphasis only
 */
 
 :root {
-  --el-green-950: #102f25;
-  --el-green-900: #17392d;
-  --el-green-800: #294438;
-  --el-mountain: #314438;
-  --el-gold: #ad8740;
-  --el-gold-soft: #c7a45c;
-  --el-wren: #50443b;
-  --el-olive: #5f5a48;
-  --el-cloud: #f2efe9;
-  --el-paper: #fbf8f1;
-  --el-bone: #d9cfbd;
-  --el-pelican: #c5baa8;
-  --el-sage: #dce5d8;
-  --el-mist: #e2e9e4;
-  --el-sand: #e9e1d4;
-  --el-line: rgba(39, 61, 50, .11);
-  --el-line-warm: rgba(82, 68, 57, .12);
-  --el-shadow: 0 18px 44px rgba(31, 46, 38, .065);
-  --el-shadow-soft: 0 10px 28px rgba(31, 46, 38, .045);
+  --brand-main: #314d3f;
+  --brand-sage: #a0ac9c;
+  --brand-paper: #e6dad0;
+  --brand-warm: #d4b498;
+  --brand-accent: #c28e62;
+
+  --brand-main-06: rgba(49, 77, 63, .06);
+  --brand-main-10: rgba(49, 77, 63, .10);
+  --brand-main-16: rgba(49, 77, 63, .16);
+  --brand-main-24: rgba(49, 77, 63, .24);
+  --brand-sage-42: rgba(160, 172, 156, .42);
+  --brand-paper-76: rgba(230, 218, 208, .76);
+  --brand-paper-92: rgba(230, 218, 208, .92);
+  --brand-warm-42: rgba(212, 180, 152, .42);
+  --brand-accent-20: rgba(194, 142, 98, .20);
+
+  --brand-line: 1px solid var(--brand-main-10);
+  --brand-shadow: 0 14px 34px rgba(49, 77, 63, .06);
+  --brand-shadow-hover: 0 18px 40px rgba(49, 77, 63, .10);
 }
 
+html,
 body {
-  background:
-    radial-gradient(circle at 12% 0%, rgba(217, 207, 189, .34), transparent 24%),
-    radial-gradient(circle at 88% 4%, rgba(220, 229, 216, .38), transparent 26%),
-    var(--el-cloud);
-  color: var(--el-green-950);
+  background: var(--brand-paper);
+  color: var(--brand-main);
 }
 
-/* ---------- Header / brand ---------- */
+body,
+p,
+li,
+small,
+span {
+  color: inherit;
+}
+
+/* -------------------- Header -------------------- */
 .site-header {
-  border-color: var(--el-line);
-  background: rgba(251, 248, 241, .92);
-  box-shadow: 0 14px 34px rgba(41, 58, 48, .055);
+  background: var(--brand-paper-92);
+  border-color: var(--brand-main-10);
+  box-shadow: var(--brand-shadow);
 }
 
 .brand-with-crest {
@@ -52,10 +63,9 @@ body {
   display: grid;
   place-items: center;
   overflow: hidden;
-  border: 1px solid rgba(49, 68, 56, .10);
+  border: var(--brand-line);
   border-radius: 13px;
-  background: linear-gradient(145deg, var(--el-cloud), var(--el-bone));
-  box-shadow: 0 6px 16px rgba(30, 48, 39, .06);
+  background: var(--brand-sage);
 }
 
 .brand-crest img {
@@ -66,148 +76,57 @@ body {
 }
 
 .brand-wordmark-small {
-  color: var(--el-green-950);
+  color: var(--brand-main);
   font-size: 13px;
   font-weight: 850;
   letter-spacing: .075em;
 }
-.brand-wordmark-small b { color: #55711f; }
+
+.brand-wordmark-small b { color: var(--brand-accent); }
 
 .main-nav {
-  background: rgba(217, 207, 189, .44);
-  border: 1px solid rgba(80, 68, 59, .05);
-}
-.main-nav a { color: #435448; }
-.main-nav a:hover { background: var(--el-paper); color: var(--el-green-950); }
-
-.header-cta {
-  background: var(--el-green-900);
-  color: var(--el-cloud);
-  border: 1px solid rgba(255,255,255,.04);
-}
-.header-cta:hover { background: var(--el-wren); }
-
-/* ---------- Homepage bento ---------- */
-.hero-story-card {
-  background:
-    radial-gradient(circle at 88% 12%, rgba(199, 164, 92, .12), transparent 23%),
-    radial-gradient(circle at 8% 100%, rgba(220, 229, 216, .56), transparent 30%),
-    var(--el-paper);
-}
-.hero-project-card {
-  background:
-    radial-gradient(circle at 72% 20%, rgba(251,248,241,.55), transparent 25%),
-    linear-gradient(145deg, #d6e1d1, var(--el-sage));
-}
-.hero-concept-card {
-  background: linear-gradient(145deg, #ded4c3, var(--el-bone));
-}
-.hero-lab-card {
-  background: linear-gradient(150deg, var(--el-green-900), #0d231b);
-}
-.hero-note-card {
-  background: linear-gradient(100deg, #d8ccbb, #e6ddcf);
+  background: var(--brand-sage-42);
+  border: var(--brand-line);
 }
 
-.orbit-core { background: var(--el-green-900); color: #e8d79b; }
-.orbit-chip, .orbit-node { background: rgba(251,248,241,.72); }
+.main-nav a { color: var(--brand-main); }
+.main-nav a:hover { background: var(--brand-paper); color: var(--brand-main); }
 
-/* ---------- Crisp homepage emblem + real text ---------- */
-.brand-mission-strip {
-  background:
-    radial-gradient(circle at 7% 20%, rgba(173, 135, 64, .08), transparent 26%),
-    linear-gradient(140deg, #ded5c5 0%, #eee8de 58%, #dce5d8 100%);
-  border-color: var(--el-line-warm);
-}
-.brand-mission-emblem {
-  min-height: 390px;
-  padding: 26px 24px 22px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
-  background: var(--el-paper);
-  border-color: var(--el-line);
-}
-.brand-mission-emblem > img {
-  width: min(100%, 300px);
-  height: auto;
-  object-fit: contain;
-  margin-inline: auto;
-  mix-blend-mode: normal;
-}
-.brand-signature {
-  width: 100%;
-  display: grid;
-  gap: 7px;
-  text-align: center;
-}
-.brand-signature-name {
-  color: var(--el-green-950);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(30px, 3vw, 44px);
-  line-height: .98;
-  letter-spacing: -.045em;
-}
-.brand-signature-name b { color: var(--el-gold); font-weight: 700; }
-.brand-signature-tagline {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  color: var(--el-green-800);
-  font-size: 10px;
-  font-weight: 850;
-  letter-spacing: .18em;
-  white-space: nowrap;
-}
-.brand-signature-tagline i {
-  width: 28px;
-  height: 2px;
-  background: var(--el-gold);
-}
-.brand-signature-tagline b { color: var(--el-gold); }
-
-.brand-values span {
-  background: rgba(251,248,241,.68);
-  border-color: var(--el-line-warm);
-  color: var(--el-green-800);
+.header-cta,
+.button.primary,
+.soft-button.primary {
+  background: var(--brand-main);
+  color: var(--brand-paper);
+  border-color: var(--brand-main);
 }
 
-/* ---------- Major homepage sections ---------- */
-.soft-section {
-  border: 1px solid var(--el-line);
-  box-shadow: var(--el-shadow-soft);
+.header-cta:hover,
+.button.primary:hover,
+.soft-button.primary:hover {
+  background: var(--brand-accent);
+  color: var(--brand-main);
 }
-.learning-section { background: linear-gradient(145deg, #e1e8dc, #edf0e8); }
-.lab-section-soft { background: linear-gradient(145deg, #d2c7b6, #e2d9ca); }
-.project-section-soft { background: linear-gradient(145deg, #e9e2d7, #dfe6da); }
 
-.soft-path-card {
-  border: 1px solid var(--el-line);
-  box-shadow: var(--el-shadow-soft);
+.button.ghost,
+.soft-button.secondary {
+  background: var(--brand-paper);
+  border-color: var(--brand-main-16);
+  color: var(--brand-main);
 }
-.soft-path-card.path-build { background: var(--el-paper); }
-.soft-path-card.path-understand { background: #ddd3c2; }
-.soft-path-card.path-lab { background: #c9c0b2; }
-.soft-path-card.path-recall { background: #d5dfd2; }
-.soft-path-card:hover { border-color: rgba(49,68,56,.22); box-shadow: var(--el-shadow); }
 
-.project-editorial-card {
-  background: rgba(251,248,241,.84);
-  border: 1px solid var(--el-line);
+/* -------------------- Global hierarchy -------------------- */
+.section-kicker,
+.soft-eyebrow,
+.eyebrow {
+  color: var(--brand-main);
 }
-.project-editorial-list > a:nth-child(odd) { background: rgba(220,229,216,.44); }
-.project-editorial-list > a:nth-child(even) { background: rgba(217,207,189,.40); }
-.project-editorial-list > a:hover { background: #f7f2e8; }
 
-/* ---------- Generic content pages: visible grouping ---------- */
 .page-top,
 .concept-hero,
-.component-hero {
-  background:
-    radial-gradient(circle at 84% 12%, rgba(173,135,64,.08), transparent 24%),
-    linear-gradient(145deg, #f8f4ec, #e3eadf);
+.component-hero,
+.project-hero {
+  background: var(--brand-sage);
+  border-color: var(--brand-main-10);
 }
 
 .project-list-card,
@@ -217,77 +136,272 @@ body {
 .relation-cards a,
 .relation-grid a,
 .roadmap-card,
-.check-list label {
-  border-color: var(--el-line);
-  box-shadow: var(--el-shadow-soft);
+.check-list label,
+.learning-card,
+.connection-grid article,
+.transfer-question-list article,
+.reference-card,
+.component-function-card,
+.concept-question-card,
+.principle-card {
+  background: var(--brand-paper);
+  border-color: var(--brand-main-10);
+  box-shadow: var(--brand-shadow);
+  color: var(--brand-main);
 }
-
-.project-list-card:nth-child(4n+1),
-.library-card:nth-child(4n+1),
-.component-card:nth-child(4n+1) { background: var(--el-paper); }
-.project-list-card:nth-child(4n+2),
-.library-card:nth-child(4n+2),
-.component-card:nth-child(4n+2) { background: #e2e9df; }
-.project-list-card:nth-child(4n+3),
-.library-card:nth-child(4n+3),
-.component-card:nth-child(4n+3) { background: #e2d8c8; }
-.project-list-card:nth-child(4n),
-.library-card:nth-child(4n),
-.component-card:nth-child(4n) { background: #cec4b4; }
 
 .project-list-card:hover,
 .library-card:hover,
 .component-card:hover,
 .relation-cards a:hover,
-.relation-grid a:hover {
-  border-color: rgba(49,68,56,.24);
-  box-shadow: var(--el-shadow);
+.relation-grid a:hover,
+.roadmap-card:hover {
+  border-color: var(--brand-main-24);
+  box-shadow: var(--brand-shadow-hover);
 }
 
-.badge { background: #d9e3cf; color: var(--el-green-800); }
-.badge.subtle { background: #ded5c5; color: var(--el-wren); }
-
-/* Content cards need a different value than their parent panel. */
-.component-detail-grid > article:nth-child(odd),
-.foundation-grid > article:nth-child(odd),
-.learning-card:nth-child(odd) { background: var(--el-paper); }
-.component-detail-grid > article:nth-child(even),
-.foundation-grid > article:nth-child(even),
-.learning-card:nth-child(even) { background: #e4dccf; }
-
-.connection-grid article:nth-child(3n+1) { background: #edf0e8; }
-.connection-grid article:nth-child(3n+2) { background: #e4dac9; }
-.connection-grid article:nth-child(3n) { background: #dce5d8; }
-
-/* ---------- Forms, labels and accents ---------- */
-.section-kicker,
-.soft-eyebrow,
-.eyebrow { color: #5b684f; }
-.section-kicker::selection,
-.soft-eyebrow::selection { background: var(--el-gold-soft); }
-
-.button.primary,
-.soft-button.primary { background: var(--el-green-900); color: var(--el-cloud); }
-.button.primary:hover,
-.soft-button.primary:hover { background: var(--el-wren); }
-.button.ghost,
-.soft-button.secondary {
-  background: rgba(251,248,241,.76);
-  border-color: var(--el-line);
-  color: var(--el-green-800);
+.badge,
+.badge.subtle,
+.equipment-card-top small,
+.brand-values span,
+.reference-links a,
+.transfer-chips span,
+.concept-prereqs a {
+  background: var(--brand-sage);
+  color: var(--brand-main);
+  border-color: var(--brand-main-10);
 }
 
-/* ---------- Footer ---------- */
-.site-footer {
-  background: linear-gradient(145deg, #ddd4c5, #e7e2d8);
-  border-color: var(--el-line-warm);
-  color: var(--el-green-900);
+/* No card-by-card color roulette. Cards use one paper surface. */
+.project-list-card:nth-child(n),
+.library-card:nth-child(n),
+.component-card:nth-child(n),
+.component-detail-grid > article:nth-child(n),
+.foundation-grid > article:nth-child(n),
+.learning-card:nth-child(n),
+.connection-grid article:nth-child(n) {
+  background: var(--brand-paper);
 }
 
-/* Keep technical dark areas as deliberate contrast moments. */
+/* -------------------- Homepage -------------------- */
+.hero-story-card,
+.hero-project-card,
+.hero-concept-card,
+.hero-note-card {
+  background: var(--brand-paper);
+  border-color: var(--brand-main-10);
+}
+
+.hero-lab-card,
 .lab-shell,
 .dark-section {
-  background: linear-gradient(145deg, var(--el-green-900), #10271f);
+  background: var(--brand-main);
+  color: var(--brand-paper);
+}
+
+.hero-lab-card *,
+.lab-shell *,
+.dark-section * {
+  color: inherit;
+}
+
+.orbit-core {
+  background: var(--brand-main);
+  color: var(--brand-paper);
+}
+
+.orbit-chip,
+.orbit-node {
+  background: var(--brand-warm);
+  color: var(--brand-main);
+}
+
+.brand-mission-strip {
+  background: var(--brand-warm);
+  border-color: var(--brand-main-10);
+}
+
+.brand-mission-emblem {
+  background: var(--brand-paper);
+  border-color: var(--brand-main-10);
+}
+
+.brand-signature-name { color: var(--brand-main); }
+.brand-signature-name b { color: var(--brand-accent); }
+.brand-signature-tagline { color: var(--brand-main); }
+.brand-signature-tagline i,
+.brand-signature-tagline b { background-color: var(--brand-accent); color: var(--brand-accent); }
+
+.soft-section {
+  border: var(--brand-line);
+  box-shadow: var(--brand-shadow);
+}
+
+/* Section roles repeat consistently: green → warm → green. */
+.learning-section,
+.project-section-soft {
+  background: var(--brand-sage);
+}
+
+.lab-section-soft {
+  background: var(--brand-warm);
+}
+
+.soft-path-card,
+.soft-path-card.path-build,
+.soft-path-card.path-understand,
+.soft-path-card.path-lab,
+.soft-path-card.path-recall {
+  background: var(--brand-paper);
+  border: var(--brand-line);
+  box-shadow: var(--brand-shadow);
+}
+
+.soft-path-card:hover {
+  border-color: var(--brand-main-24);
+  box-shadow: var(--brand-shadow-hover);
+}
+
+.project-editorial-card {
+  background: var(--brand-paper);
+  border: var(--brand-line);
+}
+
+.project-editorial-list > a:nth-child(n) {
+  background: transparent;
+}
+
+.project-editorial-list > a:hover {
+  background: var(--brand-sage-42);
+}
+
+/* -------------------- RFID project -------------------- */
+.rfid-project-page {
+  background: var(--brand-paper);
+  color: var(--brand-main);
+}
+
+.rfid-project-page h1,
+.rfid-project-page h2,
+.rfid-project-page h3,
+.rfid-project-page p,
+.rfid-project-page small,
+.rfid-project-page span {
+  color: var(--brand-main);
+}
+
+.rfid-project-page .project-hero {
+  background: var(--brand-sage);
+  border-color: var(--brand-main-10);
+}
+
+.rfid-project-page .project-spec > div:nth-child(n),
+.rfid-project-page .system-flow-grid article:nth-child(n),
+.rfid-project-page .foundation-grid > article:nth-child(n),
+.rfid-project-page .equipment-grid > article:nth-child(n),
+.rfid-project-page .goal-list > article:nth-child(n),
+.rfid-project-page .learning-mode-grid article:nth-child(n),
+.rfid-project-page .roadmap-step:nth-child(n) .roadmap-card,
+.rfid-project-page .transfer-question-list article:nth-child(n),
+.rfid-project-page .reference-card {
+  background: var(--brand-paper);
+  border-color: var(--brand-main-10);
+  box-shadow: var(--brand-shadow);
+}
+
+.rfid-project-page .project-system-flow,
+.rfid-project-page .project-equipment,
+.rfid-project-page .project-goals,
+.rfid-project-page .project-transfer {
+  background: var(--brand-sage);
+  border-color: var(--brand-main-10);
+}
+
+.rfid-project-page .project-foundation,
+.rfid-project-page .learning-architecture,
+.rfid-project-page .roadmap-section,
+.rfid-project-page .project-reference {
+  background: var(--brand-warm);
+  border-color: var(--brand-main-10);
+}
+
+.rfid-project-page .flow-card-top > span,
+.rfid-project-page .goal-list > article > span,
+.rfid-project-page .roadmap-rail > span {
+  background: var(--brand-main);
+  color: var(--brand-paper);
+}
+
+.rfid-project-page .system-flow-grid article > i {
+  background: var(--brand-main);
+  color: var(--brand-paper);
+}
+
+.rfid-project-page .equipment-card-top small,
+.rfid-project-page .reference-links a {
+  background: var(--brand-warm);
+  color: var(--brand-main);
+}
+
+/* -------------------- Concepts / Components / learning -------------------- */
+.component-detail-grid,
+.concept-body,
+.component-project-use,
+.relation-section,
+.learning-section,
+.component-learning,
+.connections-section,
+.component-cautions,
+.component-sources,
+.concept-sources,
+.principle-section {
+  color: var(--brand-main);
+}
+
+.component-detail-grid > article,
+.foundation-grid > article,
+.learning-card,
+.connection-grid article,
+.relation-cards a,
+.relation-grid a,
+.source-list a {
+  background: var(--brand-paper);
+  border-color: var(--brand-main-10);
+}
+
+.quick-check-card,
+.think-deeper-card,
+.predict-card,
+.tutor-note {
+  background: var(--brand-warm);
+  color: var(--brand-main);
+}
+
+.lesson-deliverable,
+.step-outcome,
+.component-role,
+.callout {
+  background: var(--brand-sage);
+  color: var(--brand-main);
+  border-color: var(--brand-main-10);
+}
+
+/* -------------------- Accent discipline -------------------- */
+a,
+button,
+summary {
+  accent-color: var(--brand-main);
+}
+
+::selection {
+  background: var(--brand-accent-20);
+  color: var(--brand-main);
+}
+
+.site-footer {
+  background: var(--brand-warm);
+  border-color: var(--brand-main-10);
+  color: var(--brand-main);
 }
 
 @media (max-width: 820px) {
@@ -296,9 +410,17 @@ body {
     height: 40px;
     flex-basis: 40px;
   }
-  .brand-crest img { width: 38px; height: 38px; }
-  .brand-signature-tagline { font-size: 8px; letter-spacing: .12em; gap: 6px; }
-  .brand-signature-tagline i { width: 18px; }
+
+  .brand-crest img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .brand-signature-tagline {
+    font-size: 8px;
+    letter-spacing: .12em;
+    gap: 6px;
+  }
 }
 
 @media (max-width: 560px) {
